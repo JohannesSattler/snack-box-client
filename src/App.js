@@ -26,11 +26,14 @@ export default function App() {
 
   function handleLogout() {
     const accessToken = USER_HELPERS.getUserToken();
+    
     if (!accessToken) {
       setUser(null);
       return setIsLoading(false);
     }
+
     setIsLoading(true);
+    
     logout(accessToken).then((res) => {
       if (!res.status) {
         // deal with error here
