@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import HomePage from "../pages/HomePage";
+import LandingPage from "../pages/LandingPage";
 import Login from "../pages/LogIn";
 import Signup from "../pages/Signup";
 import ProtectedPage from "../pages/ProtectedPage";
@@ -10,7 +11,7 @@ const routes = (props) => {
   return [
     {
       path: PATHS.HOMEPAGE,
-      element: <HomePage {...props} />,
+      element: user ? (<HomePage {...props} />) : (<LandingPage {...props} />),
     },
     {
       path: PATHS.SIGNUPPAGE,
@@ -28,6 +29,14 @@ const routes = (props) => {
       ) : (
         <Navigate to={PATHS.LOGINPAGE} replace />
       ),
+    },
+    {
+      path: PATHS.PLANS,
+      element: <HomePage {...props} />,
+    },
+    {
+      path: PATHS.PRODUCTS,
+      element: <HomePage {...props} />,
     },
   ];
 };

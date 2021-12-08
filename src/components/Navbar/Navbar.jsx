@@ -18,7 +18,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 const pages = ['Plans', 'Products'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const linkStyle = {color: 'white', textDecoration: 'none'}
 
 const Navbar = (props) => {
 
@@ -28,31 +28,26 @@ const Navbar = (props) => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   return (
     <>
-    <AppBar position="static">
+    <AppBar position="static" style={{backgroundColor: '#212121', filter: 'drop-shadow(0 1px 10px #696969)'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}
-            >
-              LOGO
-            </Typography>
+            <Link to={PATHS.HOMEPAGE} style={linkStyle}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}
+              >
+                {CONSTS.CAPITALIZED_APP}
+              </Typography>
+            </Link>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
@@ -65,6 +60,7 @@ const Navbar = (props) => {
               >
                 <MenuIcon />
               </IconButton>
+
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -82,73 +78,102 @@ const Navbar = (props) => {
                 sx={{
                   display: { xs: 'block', md: 'none' },
                 }}
+                
               >
-              {/* ADDED PAGES HERE */}
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      {page}
-                    </Typography>
-                  </MenuItem>
-                ))}
+                <Link to={PATHS.PLANS} style={linkStyle}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'black', display: 'block'}}
+                    
+                  >
+                    Plans
+                  </Button>
+                </Link>
+                <Link to={PATHS.PRODUCTS} style={linkStyle}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'black', display: 'block' }}
+                  >
+                    Products
+                  </Button>
+                </Link>
               </Menu>
+
+
             </Box>
+
             <Typography
               variant="h6"
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
             >
-              LOGO
+              <Link to={PATHS.HOMEPAGE} style={linkStyle}>
+                  {CONSTS.CAPITALIZED_APP}
+              </Link>
             </Typography>
+          
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
+              <Link to={PATHS.PLANS} style={linkStyle}>
                 <Button
-                  key={page}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  {page}
+                  Plans
                 </Button>
-              ))}
+              </Link>
+              <Link to={PATHS.PRODUCTS} style={linkStyle}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block'}}
+                >
+                  Products
+                </Button>
+              </Link>
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => {
-                  return (
-                  <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                  )
-                })}
-              </Menu>
+
+            <Box sx={{ flexGrow: 0, display: { md: 'flex' } }} >
+
+            {props.user ? (
+                <Button
+                  style={{backgroundColor: 'tomato'}}
+                  onClick={() => props.handleLogout()}
+                  sx={{ my: 1, color: 'white' }}
+                >
+                  Log Out
+                </Button>
+              ) : (
+                <>
+                <Link to={PATHS.SIGNUPPAGE} style={linkStyle}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 1, mx: 1, color: 'white' }}
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+                <Link to={PATHS.LOGINPAGE} style={linkStyle}>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    size="large"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 1, mx: 1, color: 'white' }}
+                  >
+                    Log In
+                  </Button>
+                </Link>
+                </>
+              )
+            }
             </Box>
           </Toolbar>
         </Container>
       </AppBar>
       </>
-
   );
 };
 
