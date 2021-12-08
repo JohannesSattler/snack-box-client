@@ -4,6 +4,8 @@ import LandingPage from "../pages/LandingPage";
 import Login from "../pages/LogIn";
 import Signup from "../pages/Signup";
 import ProtectedPage from "../pages/ProtectedPage";
+import ProductPage from "../pages/ProductPage";
+import ProductDetailPage from "../pages/ProductDetailPage";
 import * as PATHS from "../utils/paths";
 
 const routes = (props) => {
@@ -36,7 +38,11 @@ const routes = (props) => {
     },
     {
       path: PATHS.PRODUCTS,
-      element: <HomePage {...props} />,
+      element: <ProductPage {...props} />,
+    },
+    {
+      path: PATHS.PRODUCTDETAIL,
+      element: <ProductDetailPage {...props} />,
     },
   ];
 };
