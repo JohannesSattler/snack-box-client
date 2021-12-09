@@ -7,6 +7,9 @@ import ProtectedPage from "../pages/ProtectedPage";
 import ProductPage from "../pages/ProductPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import SignUpStages from "../pages/SignUpStages";
+import SubscriptionPage from "../pages/SubscriptionPage";
+import SubscriptionDetailPage from "../pages/SubscriptionDetailPage";
+
 import * as PATHS from "../utils/paths";
 import * as CONFIG from '../config/config'
 
@@ -53,10 +56,6 @@ const routes = (props) => {
       ),
     },
     {
-      path: PATHS.PLANS,
-      element: <HomePage {...props} />,
-    },
-    {
       path: PATHS.PRODUCTS,
       element: <ProductPage {...props} />,
     },
@@ -64,6 +63,16 @@ const routes = (props) => {
       path: PATHS.PRODUCTDETAIL,
       element: <ProductDetailPage {...props} />,
     },
+    {
+      path: PATHS.SUBSCRIPTIONS,
+      element: <SubscriptionPage {...props} />,
+    },
+    {
+      path: PATHS.SUBSCRIPTIONDETAIL,
+      element: <SubscriptionDetailPage {...props} />,
+    },
+    //SUBSCRIPTIONS
+    //SUBSCRIPTIONDETAIL
   ];
 };
 

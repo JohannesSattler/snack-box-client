@@ -118,12 +118,12 @@ const Navbar = (props) => {
               !isInSignUpProcess ?
               ( 
                   <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                    <Link to={PATHS.PLANS} style={linkStyle}>
+                    <Link to={PATHS.SUBSCRIPTIONS} style={linkStyle}>
                       <Button
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, color: 'white', display: 'block' }}
                       >
-                        Plans
+                        Subscriptions
                       </Button>
                     </Link>
                     <Link to={PATHS.PRODUCTS} style={linkStyle}>
@@ -157,12 +157,12 @@ const Navbar = (props) => {
               ( 
                 <>
                   <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                    <Link to={PATHS.PLANS} style={linkStyle}>
+                    <Link to={PATHS.SUBSCRIPTIONS} style={linkStyle}>
                       <Button
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, color: 'white', display: 'block' }}
                       >
-                        Plans
+                        Subscriptions
                       </Button>
                     </Link>
                     <Link to={PATHS.PRODUCTS} style={linkStyle}>
@@ -225,7 +225,7 @@ const Navbar = (props) => {
                       sx={{mx: 1, mt: 1.5}}
                       color={(user?.signupStage || 0) >= 4 ? 'rgb(69, 184, 79)' : 'rgb(131, 131, 131)'}
                       >
-                        Subscription ❯
+                        Subscription
                       </Typography>
                   </Box>
                 </>
@@ -234,6 +234,30 @@ const Navbar = (props) => {
 
             <Box sx={{ flexGrow: 0, display: { md: 'flex' } }} >
             {user ? (
+                <>
+                {
+                  !isInSignUpProcess ? (
+                    <>
+                      <Link to={PATHS.SUBSCRIPTIONS} style={linkStyle}>
+                        <Button
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 1, color: 'white', display: 'block'}}
+                        >
+                          Your Orders
+                        </Button>
+                      </Link>
+                      <Link to={PATHS.SUBSCRIPTIONS} style={linkStyle}>
+                        <Button
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 1, color: 'white', display: 'block'}}
+                        >
+                          Profile
+                        </Button>
+                      </Link>
+                    </>
+                  ) : (<></>)
+                }
+
                 <Button
                   style={{backgroundColor: 'tomato'}}
                   onClick={() => props.handleLogout()}
@@ -241,6 +265,7 @@ const Navbar = (props) => {
                 >
                   Log Out
                 </Button>
+                </>
               ) : (
                 <>
                 <Link to={PATHS.SIGNUPPAGE} style={linkStyle}>

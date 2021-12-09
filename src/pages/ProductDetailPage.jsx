@@ -43,21 +43,23 @@ function ProductDetailPage() {
                 </Grid>
 
                 <Grid item md={4} style={gridItemStyle}>
-                    <Typography variant="h3" component="h3">
+                    <Typography align="left" variant="h3" component="h3">
                         Product details
                     </Typography>
                     <br/><br/>
-                    <Typography variant="h6" component="h4">
+                    <Typography align="left" variant="h6" component="h4">
                         {product.name}
                     </Typography>
                     <br/>
-                    <Typography variant="subtitle1" component="h3">
+                    <Typography align="left" variant="subtitle1" component="h3">
                         {product.brand}
                     </Typography>
                     <br/><br/>
-                    <Typography variant="subtitle2" component="h3">
-                        {product.ingredients}
-                    </Typography>
+
+                    <Typography variant="h5" align="right" color="text.secondary" sx={{m: 1}}>
+                        {product.price} €
+                     </Typography>
+
                 </Grid>
 
                 <Grid item md={4} style={gridItemStyle}>
@@ -79,18 +81,18 @@ function ProductDetailPage() {
                                         if(index % 2 === 1) {
                                         return ( 
                                             <TableRow key={nutrit + index}>
-                                                    <TableCell component="th" scope="row">
-                                                        { Object.keys(product.nutrtionTable)[index-1] }
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        { 
-                                                            Object.values(product.nutrtionTable)[index-1].toFixed(2) 
-                                                        }
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        { product.nutrtionTable[nutrit]}
-                                                    </TableCell>
-                                                </TableRow>
+                                                <TableCell component="th" scope="row">
+                                                    { Object.keys(product.nutrtionTable)[index-1] }
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    { 
+                                                        Object.values(product.nutrtionTable)[index-1].toFixed(2) 
+                                                    }
+                                                </TableCell>
+                                                <TableCell align="center">
+                                                    { product.nutrtionTable[nutrit]}
+                                                </TableCell>
+                                            </TableRow>
                                             )
                                         }
                                     })
@@ -108,9 +110,9 @@ function ProductDetailPage() {
                         product.ingredients
                         .replace(/[^a-zA-Z,]/g, ' ')
                         .split(',')
-                        .map(ingredient => {
+                        .map((ingredient, index) => {
                             return (
-                                <Chip label={ingredient} color="primary" style={{margin: 3}}/>
+                                <Chip key={ingredient + index} label={ingredient} color="primary" style={{margin: 3}}/>
                             )
                         })
                     }

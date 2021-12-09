@@ -9,7 +9,8 @@ export const SIGNUPSNACKS = '/signup/snack-information'
 export const SIGNUPPAYMENTS = '/signup/payment-information'
 export const SIGNUPSUBSCRIPTION = '/signup/subscription-information'
 
-export const PLANS = '/plans'
+export const SUBSCRIPTIONS = '/subscriptions'
+export const SUBSCRIPTIONDETAIL = '/subscriptions/:id'
 
 export const PRODUCTS = '/products'
 export const PRODUCTDETAIL = '/products/:id'

@@ -12,8 +12,8 @@ import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 
-function ProductThumb(props) {
-    const {_id, name, brand, image, sugars, salt, fat} = props.product
+function ProductCard(props) {
+    const {_id, name, brand, image, sugars, salt, fat, price} = props.product
     console.log(props.product)
     return (
         <Card sx={{ width: 300, margin: '10px'}} variant="outlined">
@@ -29,6 +29,7 @@ function ProductThumb(props) {
                     <Typography gutterBottom variant="h5" component="div">
                         {name}
                     </Typography>
+                    <Divider />
                     <Typography variant="body2" color="text.secondary">
                         {brand}
                     </Typography>
@@ -67,14 +68,17 @@ function ProductThumb(props) {
                 <Link to={'/products/' + _id} style={{textDecoration: 'none'}}>
                     <Button
                     variant="outlined"
-                    style={{float: 'right', margin: '4px 0'}}
+                    style={{float: 'right', margin: '20px 0'}}
                     >
                     See more
                     </Button>
                 </Link>
+                <Typography variant="h5" align="left" color="text.secondary" sx={{mt: 0, p: 0}}>
+                    {price} €
+                </Typography>
                 </CardContent>
         </Card>
     )
 }
 
-export default ProductThumb
+export default ProductCard

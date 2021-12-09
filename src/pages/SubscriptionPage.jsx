@@ -1,22 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import Loading from '../components/Loading/index'
-import ProductCard from '../components/ProductCard'
+import SubscriptionCard from '../components/SubscriptionCard'
 import axios from 'axios'
 
-
-function ProductPage() {
-    const [products, setProducts] = useState([])
+function SubscriptionPage() {
+    const [subscriptions, setSubscriptions] = useState([])
 
     useEffect(() => {
         (async() => {
             const base = process.env.REACT_APP_API_BASE_URL
-            const response = await axios.get(base + '/products')
-            console.log(response)
-            setProducts(response.data)
+            const response = await axios.get(base + '/subscriptions')
+            setSubscriptions(response.data)
         })()
     }, [])
-
-    if(!products.length) {
+    
+    if(!subscriptions.length) {
         return <Loading></Loading>
     } 
 
@@ -33,12 +31,12 @@ function ProductPage() {
             }}
         >
             {
-                products.map(product => {
-                    return <ProductCard product={product}/>
+                subscriptions.map(subscription => {
+                    return <SubscriptionCard subscription={subscription}/>
                 })
             }
         </div>
     )
 }
 
-export default ProductPage
+export default SubscriptionPage
