@@ -1,0 +1,1 @@
+export const MAX_SIGNUP_STAGE = 4

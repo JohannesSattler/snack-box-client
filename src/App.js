@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
 import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
+import * as CONFIG from './config/config'
+
 
 export default function App() {
+  const navigate = useNavigate()
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,6 +26,20 @@ export default function App() {
       setIsLoading(false);
     });
   }, []);
+
+  
+  useEffect(() => {
+    if(user && user.signupStage <= CONFIG.MAX_SIGNUP_STAGE) {
+      const pageRoute = {
+        0: 'personal-information',
+        1: 'snack-information',
+        2: 'payment-information',
+        3: 'subscription-information'
+      }
+      console.log('/signup/' + pageRoute[user.signupStage])
+      navigate('/signup/' + pageRoute[user.signupStage])
+    }  
+  }, [user])
 
   function handleLogout() {
     const accessToken = USER_HELPERS.getUserToken();
@@ -52,6 +69,7 @@ export default function App() {
   if (isLoading) {
     return <LoadingComponent />;
   }
+
   return (
     <div className="App">
         <Navbar handleLogout={handleLogout} user={user} />

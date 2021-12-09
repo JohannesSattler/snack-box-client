@@ -6,20 +6,28 @@ import Signup from "../pages/Signup";
 import ProtectedPage from "../pages/ProtectedPage";
 import ProductPage from "../pages/ProductPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import SignUpStages from "../pages/SignUpStages";
 import * as PATHS from "../utils/paths";
+import * as CONFIG from '../config/config'
 
 const routes = (props) => {
   const { user } = props;
   return [
     {
       path: PATHS.HOMEPAGE,
-      element: user ? (<HomePage {...props} />) : (<LandingPage {...props} />),
+      element: user ? 
+        (<HomePage {...props} />)
+        : 
+        (<LandingPage {...props} />),
     },
     {
       path: PATHS.SIGNUPPAGE,
       element: <Signup {...props} />,
     },
-
+    {
+      path: PATHS.SIGNUPPERSONAL,
+      element: <SignUpStages {...props} />
+    },
     {
       path: PATHS.LOGINPAGE,
       element: <Login {...props} />,

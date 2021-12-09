@@ -20,8 +20,10 @@ export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
+    firstName: "",
+    lastName: ""
   });
-  const { email, password } = form;
+  const { email, password, firstName, lastName } = form;
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -35,6 +37,8 @@ export default function Signup({ authenticate }) {
     const credentials = {
       email,
       password,
+      firstName,
+      lastName,
     };
 
     signup(credentials).then((res) => {
@@ -72,8 +76,33 @@ export default function Signup({ authenticate }) {
             Sign Up
           </Typography>
           <Box component="form" onSubmit={handleFormSubmission} noValidate sx={{ mt: 1 }}>
+            <Box style={{display: 'flex'}}>
+              <TextField
+                margin="dense"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                name="firstName"
+                autoComplete="firstName"
+                onChange={handleInputChange}
+                autoFocus
+                style={{marginRight: 2}}
+              />
+              <TextField
+                margin="dense"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lastName"
+                onChange={handleInputChange}
+                style={{marginLeft: 2}}
+              />
+            </Box>
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               id="email"
@@ -81,10 +110,9 @@ export default function Signup({ authenticate }) {
               name="email"
               autoComplete="email"
               onChange={handleInputChange}
-              autoFocus
             />
             <TextField
-              margin="normal"
+              margin="dense"
               required
               fullWidth
               name="password"

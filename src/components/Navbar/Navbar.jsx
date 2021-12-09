@@ -14,16 +14,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import * as CONFIG from '../../config/config'
 
-const pages = ['Plans', 'Products'];
 const linkStyle = {color: 'white', textDecoration: 'none'}
 
 const Navbar = (props) => {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -132,9 +129,49 @@ const Navbar = (props) => {
               </Link>
             </Box>
 
+            { // if user is found and hasnt filled signup stage
+              props.user ? (<>{ props.user.signupStage <= CONFIG.MAX_SIGNUP_STAGE ?
+              ( 
+                <>
+                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginRight: '10%' }}>
+                    <Link to={PATHS.SIGNUPPERSONAL} style={linkStyle}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block'}}
+                      >
+                        Personal ❯
+                      </Button>
+                    </Link>
+                    <Link to={PATHS.SIGNUPSNACKS} style={linkStyle}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block'}}
+                      >
+                        Snacks ❯
+                      </Button>
+                    </Link>
+                    <Link to={PATHS.SIGNUPPAYMENTS} style={linkStyle}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block'}}
+                      >
+                        Payments ❯
+                      </Button>
+                    </Link>
+                    <Link to={PATHS.SIGNUPSUBSCRIPTION} style={linkStyle}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block'}}
+                      >
+                        Subscription
+                      </Button>
+                    </Link>
+                  </Box>
+                </>
+              ) : (<></>)}</>) : (<></>)
+            }
 
             <Box sx={{ flexGrow: 0, display: { md: 'flex' } }} >
-
             {props.user ? (
                 <Button
                   style={{backgroundColor: 'tomato'}}
