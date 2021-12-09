@@ -1,39 +1,39 @@
-import React, {useState, useEffect} from 'react'
-import InfoPersonal from '../components/InfoPersonal';
+import React, {useState, useEffect, useContext} from 'react'
 import { useNavigate } from "react-router-dom";
 import * as CONFIG from '../config/config'
+import { UserContext } from "../context/UserContext";
+
+import InfoPersonal from '../components/SignUpStages/InfoPersonal';
+import InfoSnacks from '../components/SignUpStages/InfoSnacks';
+import InfoPayment from '../components/SignUpStages/InfoPayment';
+import InfoSubscription from '../components/SignUpStages/InfoSubscription';
 
 function SignUpStages(props) {
-    const navigate = useNavigate()
-    const [stage, setStage] = useState(props.user.signupStage)
-
-    function handleStageSubmit() {
-        setStage(stage+1)
-    }
-
+    const {user, setUser} = useContext(UserContext)
+    
     return (
-        <>
+        <div style={{marginTop: '200px'}}>
         {
-            stage === 0 ? (
-                <InfoPersonal onStageSubmit={handleStageSubmit} user={props.user}/>
+            user.signupStage === 0 ? (
+                <InfoPersonal/>
             ) : (<></>)
         }
         {
-            stage === 1 ? (
-                <h1>This is SignUpStage 1</h1>
+            user.signupStage === 1 ? (
+                <InfoSnacks/>
             ) : (<></>)
         }
         {
-            stage === 2 ? (
-                <h1>This is SignUpStage 2</h1>
+            user.signupStage === 2 ? (
+                <InfoPayment/>
             ) : (<></>)
         }
         {
-            stage === 3 ? (
-                <h1>This is SignUpStage 3</h1>
+            user.signupStage === 3 ? (
+                <InfoSubscription/>
             ) : (<></>)
         }
-        </>
+        </div>
     )
 }
 

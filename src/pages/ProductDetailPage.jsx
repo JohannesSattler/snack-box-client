@@ -78,7 +78,7 @@ function ProductDetailPage() {
                                     Object.keys(product.nutrtionTable).map((nutrit, index) => {
                                         if(index % 2 === 1) {
                                         return ( 
-                                            <TableRow>
+                                            <TableRow key={nutrit + index}>
                                                     <TableCell component="th" scope="row">
                                                         { Object.keys(product.nutrtionTable)[index-1] }
                                                     </TableCell>

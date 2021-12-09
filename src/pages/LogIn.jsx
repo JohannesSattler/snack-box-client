@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Signup";
 import * as PATHS from "../utils/paths";
 import * as USER_HELPERS from "../utils/userToken";
+import * as CONFIG from '../config/config'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -45,7 +46,23 @@ export default function LogIn({ authenticate }) {
       }
       USER_HELPERS.setUserToken(res.data.accessToken);
       authenticate(res.data.user);
-      navigate(PATHS.HOMEPAGE);
+
+      if(res.data.user && res.data.user.signupStage < CONFIG.MAX_SIGNUP_STAGE) {
+        console.log(res.data.user.signupStage)
+        const pageRoute = {
+          0: 'personal-information',
+          1: 'snack-information',
+          2: 'payment-information',
+          3: 'subscription-information'
+        }
+        console.log('On Start nav change')
+        navigate('/signup/' + pageRoute[res.data.user.signupStage]);
+      } 
+      else {
+        navigate(PATHS.HOMEPAGE);
+      }
+
+      //navigate(PATHS.HOMEPAGE);
     });
   }
 

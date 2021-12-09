@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
@@ -7,10 +7,11 @@ import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import * as CONFIG from './config/config'
 
+import { UserContext } from "./context/UserContext";
 
 export default function App() {
   const navigate = useNavigate()
-  const [user, setUser] = useState(null);
+  const {user, setUser} = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,28 +28,29 @@ export default function App() {
     });
   }, []);
 
-  
   useEffect(() => {
-    if(user && user.signupStage <= CONFIG.MAX_SIGNUP_STAGE) {
+    if(user && user.signupStage < CONFIG.MAX_SIGNUP_STAGE) {
+      console.log(user.signupStage)
       const pageRoute = {
-        0: 'personal-information',
-        1: 'snack-information',
-        2: 'payment-information',
-        3: 'subscription-information'
+        0: '/signup/personal-information',
+        1: '/signup/snack-information',
+        2: '/signup/payment-information',
+        3: '/signup/subscription-information',
       }
-      console.log('/signup/' + pageRoute[user.signupStage])
-      navigate('/signup/' + pageRoute[user.signupStage])
+      console.log('On Start nav change')
+      navigate('/signup/' + pageRoute[user.signupStage]);
     }  
-  }, [user])
+  }, [isLoading])
 
   function handleLogout() {
     const accessToken = USER_HELPERS.getUserToken();
     
     if (!accessToken) {
       setUser(null);
+      navigate('/')
       return setIsLoading(false);
     }
-
+    
     setIsLoading(true);
     
     logout(accessToken).then((res) => {
@@ -58,6 +60,7 @@ export default function App() {
       }
       USER_HELPERS.removeUserToken();
       setIsLoading(false);
+      navigate('/')
       return setUser(null);
     });
   }
@@ -73,11 +76,13 @@ export default function App() {
   return (
     <div className="App">
         <Navbar handleLogout={handleLogout} user={user} />
+        <div style={{marginTop: '100px'}}>
         <Routes>
           {routes({ user, authenticate, handleLogout }).map((route) => (
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
         </Routes>
+        </div>
     </div>
   );
 }

@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { TextField, Button, Box, Grid, Alert, Container } from '@mui/material';
 import axios from 'axios';
-
+import { UserContext } from "../../context/UserContext";
 
 function InfoPersonal(props) {
+    const {user, setUser} = useContext(UserContext)
+
     const [form, setForm] = useState({
         city: '',
         postalCode: '',
@@ -12,10 +14,6 @@ function InfoPersonal(props) {
     }) 
 
     const [error, setError] = useState()
-
-    useEffect(() => {
-        console.log(form)
-    }, [form])
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -30,10 +28,9 @@ function InfoPersonal(props) {
         }
 
         const base_url = process.env.REACT_APP_API_BASE_URL
-        const response = await axios.patch(base_url + '/user/' + props.user._id + '/update', {adressInfo: form})
+        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {signupStage: 1, adressInfo: form})
         console.log(response.data)
-
-        props.onStageSubmit()
+        setUser(response.data)
     }
 
     return (
@@ -67,7 +64,7 @@ function InfoPersonal(props) {
                         onClick={handleFormSubmit}
                         sx={{ mt: 1, mb: 2 }}
                         >
-                        Submit
+                        Save
                         </Button>
 
                 </Grid>

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import { Link, NavLink, useNavigate, Navigate, useHistory  } from "react-router-dom";
 import "./Navbar.css";
 import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
@@ -16,11 +16,47 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import * as CONFIG from '../../config/config'
 
+import {UserContext} from '../../context/UserContext.js'
+
 const linkStyle = {color: 'white', textDecoration: 'none'}
 
 const Navbar = (props) => {
+  const navigate = useNavigate();
+  const {user, setUser} = useContext(UserContext)
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [isInSignUpProcess, setIsInSignUpProcess] = useState(false)
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [navchange, setNavChange] = useState(0)
+
+  useEffect(() => {
+    if(user && user.signupStage <= CONFIG.MAX_SIGNUP_STAGE) {
+      const pageRoute = {
+        0: 'personal-information',
+        1: 'snack-information',
+        2: 'payment-information',
+        3: 'subscription-information'
+      }
+
+      navigate('/signup/' + pageRoute[user.signupStage]);
+    }  
+  }, [navchange])
+
+  useEffect(() => {
+    if(!user) {
+      setIsInSignUpProcess(false)
+      return;
+    }
+    if(user.signupStage <= CONFIG.MAX_SIGNUP_STAGE) {
+      setIsInSignUpProcess(true)
+    }
+    else {
+      setIsInSignUpProcess(false)
+    }
+  }, [user])
+
+  function handleSignUpStageClick() {
+    setNavChange(navchange+1)
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -30,9 +66,10 @@ const Navbar = (props) => {
     setAnchorElNav(null);
   };
 
+  console.log( user?.signupStage || 10 )
   return (
     <>
-    <AppBar position="static" style={{backgroundColor: '#212121', filter: 'drop-shadow(0 1px 10px #696969)'}}>
+    <AppBar position="fixed" style={{backgroundColor: '#212121', filter: 'drop-shadow(0 1px 10px #696969)'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Link to={PATHS.HOMEPAGE} style={linkStyle}>
@@ -77,23 +114,28 @@ const Navbar = (props) => {
                 }}
                 
               >
-                <Link to={PATHS.PLANS} style={linkStyle}>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'black', display: 'block'}}
-                    
-                  >
-                    Plans
-                  </Button>
-                </Link>
-                <Link to={PATHS.PRODUCTS} style={linkStyle}>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'black', display: 'block' }}
-                  >
-                    Products
-                  </Button>
-                </Link>
+            { // if user is found and hasnt filled signup stage
+              !isInSignUpProcess ?
+              ( 
+                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Link to={PATHS.PLANS} style={linkStyle}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                      >
+                        Plans
+                      </Button>
+                    </Link>
+                    <Link to={PATHS.PRODUCTS} style={linkStyle}>
+                      <Button
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block'}}
+                      >
+                        Products
+                      </Button>
+                    </Link>
+                  </Box>
+              ) : (<Box></Box>)}
               </Menu>
 
 
@@ -110,69 +152,88 @@ const Navbar = (props) => {
               </Link>
             </Typography>
           
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Link to={PATHS.PLANS} style={linkStyle}>
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  Plans
-                </Button>
-              </Link>
-              <Link to={PATHS.PRODUCTS} style={linkStyle}>
-                <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block'}}
-                >
-                  Products
-                </Button>
-              </Link>
-            </Box>
-
-            { // if user is found and hasnt filled signup stage
-              props.user ? (<>{ props.user.signupStage <= CONFIG.MAX_SIGNUP_STAGE ?
+            { // if no user is found and not in form
+              !isInSignUpProcess ?
               ( 
                 <>
-                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, marginRight: '10%' }}>
-                    <Link to={PATHS.SIGNUPPERSONAL} style={linkStyle}>
+                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Link to={PATHS.PLANS} style={linkStyle}>
                       <Button
                         onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'white', display: 'block'}}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
                       >
-                        Personal ❯
+                        Plans
                       </Button>
                     </Link>
-                    <Link to={PATHS.SIGNUPSNACKS} style={linkStyle}>
+                    <Link to={PATHS.PRODUCTS} style={linkStyle}>
                       <Button
                         onClick={handleCloseNavMenu}
                         sx={{ my: 2, color: 'white', display: 'block'}}
                       >
-                        Snacks ❯
-                      </Button>
-                    </Link>
-                    <Link to={PATHS.SIGNUPPAYMENTS} style={linkStyle}>
-                      <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'white', display: 'block'}}
-                      >
-                        Payments ❯
-                      </Button>
-                    </Link>
-                    <Link to={PATHS.SIGNUPSUBSCRIPTION} style={linkStyle}>
-                      <Button
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: 'white', display: 'block'}}
-                      >
-                        Subscription
+                        Products
                       </Button>
                     </Link>
                   </Box>
+
                 </>
-              ) : (<></>)}</>) : (<></>)
+              ) : (<></>)}
+
+
+            { // if user is found and hasnt filled signup stage
+              isInSignUpProcess ?
+              ( 
+                <>
+                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Typography 
+                      gutterBottom 
+                      variant="h9" 
+                      component="h3" 
+                      align="center"
+                      sx={{mx: 1, mt: 1.5}}
+                      color={(user?.signupStage || 0) >= 1 ? 'rgb(69, 184, 79)' : 'rgb(131, 131, 131)'}
+                      >
+                        Personal ❯
+                      </Typography>
+                    
+                      <Typography 
+                      gutterBottom 
+                      variant="h9" 
+                      component="h3" 
+                      align="center"
+                      sx={{mx: 1, mt: 1.5}}
+                      color={(user?.signupStage || 0) >= 2 ? 'rgb(69, 184, 79)' : 'rgb(131, 131, 131)'}
+                      >
+                        Snacks ❯
+                      </Typography>
+
+                      <Typography 
+                      gutterBottom 
+                      variant="h9" 
+                      component="h3" 
+                      align="center"
+                      sx={{mx: 1, mt: 1.5}}
+                      color={(user?.signupStage || 0) >= 3 ? 'rgb(69, 184, 79)' : 'rgb(131, 131, 131)'}
+                      >
+                        Payment ❯
+                      </Typography>
+
+                      <Typography 
+                      gutterBottom 
+                      variant="h9" 
+                      component="h3" 
+                      align="center"
+                      sx={{mx: 1, mt: 1.5}}
+                      color={(user?.signupStage || 0) >= 4 ? 'rgb(69, 184, 79)' : 'rgb(131, 131, 131)'}
+                      >
+                        Subscription ❯
+                      </Typography>
+                  </Box>
+                </>
+              ) : (<></>)
             }
 
             <Box sx={{ flexGrow: 0, display: { md: 'flex' } }} >
-            {props.user ? (
+            {user ? (
                 <Button
                   style={{backgroundColor: 'tomato'}}
                   onClick={() => props.handleLogout()}
