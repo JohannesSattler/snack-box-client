@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { useParams, Link } from 'react-router'
 import Loading from '../components/Loading/index'
 import { 
@@ -11,7 +11,7 @@ import {
     Fab,
     AddIcon,
 } from '@mui/material'
-
+import { UserContext } from '../context/UserContext'
 import ProductCard from '../components/ProductCard'
 
 function SubscriptionDetailPage() {
@@ -19,7 +19,6 @@ function SubscriptionDetailPage() {
     const [subscription, setSubscriptions] = useState(null)
 
     useEffect(() => {
-        
         (async() => {
             window.scrollTo(0, 0)
             const base_url = process.env.REACT_APP_API_BASE_URL

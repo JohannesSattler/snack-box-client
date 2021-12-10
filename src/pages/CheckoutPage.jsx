@@ -16,31 +16,32 @@ import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import Loading from '../components/Loading/index'
 import SubscriptionCard from '../components/SubscriptionCard';
+import SubscriptionCardSmall from '../components/SubscriptionCardSmall';
 
 function CheckoutPage() {
-    const [subscription, setSubscription] = useState(null)
+    const [subscriptions, setSubscriptions] = useState(null)
+    const [total, setTotal] = useState(0)
     const {user, setUser} = useContext(UserContext)
 
     useEffect(() => {
         (async() => {
-            // CHANGE that to the current subscription model the user has defined
-            const someID = '61b1d9ad5e7350d8f9564ecb'
             // get the current subscription model
             const base_url = process.env.REACT_APP_API_BASE_URL
-            const response = await axios.get(base_url + '/subscriptions/' + someID)
+            const response = await axios.get(base_url + '/user/' + user._id + '/subscriptions')
             console.log(response.data)
-            setSubscription(response.data)
+            setSubscriptions(response.data.subscriptions)
+            setTotal(response.data.total)
         })()
     }, [])
 
-    if(!subscription) {
+    if(!subscriptions) {
         return <Loading></Loading>
     }
 
     return (
         <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
             <Typography align="center" variant="h3">Checkout</Typography>
-            <Box sx={{ maxWidth: 400, margin: '0 auto'}}>
+            <Box sx={{ maxWidth: 600, margin: '0 auto'}}>
                 <Typography align="center" variant="h6">Shipping Information</Typography>
                 <Typography variant='subtitle1'>Adress Info:</Typography>
                 <Typography variant='body1'><b>City / Zip: </b>{user.adressInfo.city}, {user.adressInfo.postalCode}</Typography>
@@ -53,12 +54,19 @@ function CheckoutPage() {
                     </Button>
                 </Link>
                 <Divider/>
-
-                <SubscriptionCard subscription={subscription}/>
-                <Typography variant='body2'><b>Total: </b>{subscription.total} €</Typography>
+                {
+                    subscriptions.map(subscription => {
+                        return <SubscriptionCardSmall subscription={subscription}/> 
+                    })
+                }
                 <Divider/>
+                <Typography variant='h4'><b>Total: </b>{total} €</Typography>
             </Box>
-
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </Container>
     )
 }

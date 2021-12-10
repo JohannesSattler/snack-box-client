@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import {
     Card,
     CardContent,
@@ -13,16 +13,50 @@ import {
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
-
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/UserContext'
+import axios from 'axios';
 
 function SubscriptionCard(props) {
+    const [isActive, setIsActive] = useState(false)
+    const {user, setUser} = useContext(UserContext)
     const {_id, title, description, image, products } = props.subscription
     
+    
+    // check the total amount
+    // THIS NEEDS TO BE DONE ON SERVER SIDE
+    // after a subscription gets created or updated
     let total = 0
     if(products.length) {
         total = products.reduce((total, current) => total + current.price, 0)
         total = Number(total.toFixed(2))
+        console.count(total)
+    }
+
+    useEffect(() => {
+        // check on start if already subscribed
+        if(user.subscriptions.includes(_id)) {
+            setIsActive(true)
+        }  
+    }, [])
+
+    // handle adding and removing subscriptions
+    async function handleAddRemoveClick() {
+        setIsActive(!isActive)
+
+        const base_url = process.env.REACT_APP_API_BASE_URL
+        if(!isActive) {
+            console.log('Add')
+            const response = await axios.patch(`${base_url}/user/${user._id}/subscriptions/${_id}/add`)
+            console.log(response.data)
+            setUser(response.data)
+        }
+        else {
+            console.log('Remove')
+            const response = await axios.patch(`${base_url}/user/${user._id}/subscriptions/${_id}/remove`)
+            console.log(response.data)
+            setUser(response.data)
+        }
     }
 
     return (
@@ -60,9 +94,14 @@ function SubscriptionCard(props) {
                             </Typography>
                         </Grid>
                         <Grid item xs={2}>
-                            <Fab size="small" color="primary" aria-label="add">
-                               {/*  <CheckIcon /> */}
-                                <AddIcon/>
+                            <Fab size="small" color={isActive ? "secondary" : "primary"} aria-label="add" onClick={handleAddRemoveClick}>
+                               {
+                                isActive ? (
+                                    <CheckIcon />
+                                ) : (
+                                    <AddIcon/>
+                                )
+                               }
                             </Fab>
                         </Grid>
                     </Grid>
