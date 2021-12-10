@@ -17,8 +17,7 @@ function SubscriptionCardSmall(props) {
     const {_id, title, description, image, products } = props.subscription
 
     return (
-        <Card sx={{ width: 600, margin: '10px'}} variant="outlined">
-
+        <Card sx={{margin: '5px'}} variant="outlined" raised={true}>
             <Grid container spacing={2}>
                 <Grid item xs={3}>
                     <CardMedia
@@ -29,7 +28,7 @@ function SubscriptionCardSmall(props) {
                     />
                 </Grid>
                 <Grid item xs={6}>
-                    <Typography variant="h5" align="left" color="text.secondary" sx={{mt: 0, p: 0}}>
+                    <Typography noWrap={true} variant="h5" align="left" color="text.secondary" sx={{mt: 0, p: 0}}>
                         {title}
                     </Typography>
                 </Grid>

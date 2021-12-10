@@ -60,7 +60,7 @@ function SubscriptionCard(props) {
     }
 
     return (
-        <Card sx={{ width: 300, margin: '10px'}} variant="outlined">
+        <Card sx={{ width: 300, margin: '10px'}} raised={true}>
                 <CardMedia
                     component="img"
                     style={{objectFit: 'contain'}}

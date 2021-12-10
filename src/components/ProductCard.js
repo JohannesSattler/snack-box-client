@@ -16,7 +16,7 @@ function ProductCard(props) {
     const {_id, name, brand, image, sugars, salt, fat, price} = props.product
     console.log(props.product)
     return (
-        <Card sx={{ width: 300, margin: '10px'}} variant="outlined">
+        <Card sx={{ width: 300, margin: '10px'}} raised={true}>
                 <CardMedia
                     component="img"
                     style={{objectFit: 'contain'}}

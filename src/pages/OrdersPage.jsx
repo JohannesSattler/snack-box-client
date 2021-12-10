@@ -17,6 +17,7 @@ import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import Loading from '../components/Loading/index'
 import SubscriptionCard from '../components/SubscriptionCard';
+import SubscriptionCardSmall from '../components/SubscriptionCardSmall';
 
 const steps = [
     {
@@ -62,7 +63,7 @@ function OrdersPage() {
         <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
             <Typography align="center" variant="h3">Your Orders</Typography>
             <Box sx={{ maxWidth: 400, margin: '0 auto'}}>
-                <SubscriptionCard subscription={subscription}/>
+                <SubscriptionCardSmall subscription={subscription}/>
                 <Stepper activeStep={activeStep} orientation="vertical">
                     {steps.map((step, index) => (
                         <Step key={step.label}>
