@@ -35,8 +35,6 @@ function InfoPersonal(props) {
 
     return (
         <>
-            <h1>This is SignUpStage 0</h1>
-
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField style={{margin: '10px'}} required onChange={handleInputChange} label="City" name="city"/>

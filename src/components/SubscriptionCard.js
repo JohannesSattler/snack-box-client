@@ -1,15 +1,22 @@
 import React from 'react'
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    Button,
+    Typography,
+    Divider,
+    Fab,
+    Box,
+    Container,
+    Grid,
+} from '@mui/material'
+import AddIcon from '@mui/icons-material/Add';
+import CheckIcon from '@mui/icons-material/Check';
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 
 function SubscriptionCard(props) {
-    console.log({props})
     const {_id, title, description, image, products } = props.subscription
     
     let total = 0
@@ -36,19 +43,29 @@ function SubscriptionCard(props) {
                     <Typography variant="body2" color="text.secondary">
                         {description}
                     </Typography>
-
-
-                <Link to={'/subscriptions/' + _id} style={{textDecoration: 'none'}}>
-                    <Button
-                    variant="outlined"
-                    style={{float: 'right', margin: '20px 0'}}
-                    >
-                    See more
-                    </Button>
-                </Link>
-                <Typography variant="h5" align="left" color="text.secondary" sx={{mt: 0, p: 0}}>
-                    {total} €
-                </Typography>
+                    <Grid container spacing={2}>
+                        <Grid item xs={5}>
+                            <Link to={'/subscriptions/' + _id} style={{textDecoration: 'none'}}>
+                                <Button
+                                variant="outlined"
+                                style={{float: 'right', margin: '20px 0'}}
+                                >
+                                See more
+                                </Button>
+                            </Link>
+                        </Grid>
+                        <Grid item xs={5}>
+                            <Typography variant="h5" align="left" color="text.secondary" sx={{mt: 0, p: 0}}>
+                                {total} €
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={2}>
+                            <Fab size="small" color="primary" aria-label="add">
+                               {/*  <CheckIcon /> */}
+                                <AddIcon/>
+                            </Fab>
+                        </Grid>
+                    </Grid>
                 </CardContent>
         </Card>
     )

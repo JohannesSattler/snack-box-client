@@ -25,7 +25,7 @@ function InfoSubscription() {
         }
 
         const base_url = process.env.REACT_APP_API_BASE_URL
-        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {subscriptions: ['Some Model1', 'Some Model2'], signupStage: 10})
+        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {subscriptions: ['61b1d9ad5e7350d8f9564ecb', '61b1d9ad5e7350d8f9564ecc'], signupStage: 10})
         console.log(response.data)
         setUser(response.data)
         navigation('/')

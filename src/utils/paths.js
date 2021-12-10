@@ -15,3 +15,7 @@ export const SUBSCRIPTIONDETAIL = '/subscriptions/:id'
 export const PRODUCTS = '/products'
 export const PRODUCTDETAIL = '/products/:id'
 
+export const ORDERS = '/orders'
+export const PROFILE = '/profile'
+export const CHECKOUT = '/checkout'
+

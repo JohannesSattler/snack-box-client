@@ -66,7 +66,8 @@ const Navbar = (props) => {
     setAnchorElNav(null);
   };
 
-  console.log( user?.signupStage || 10 )
+  //console.log( user?.signupStage || 10 )
+
   return (
     <>
     <AppBar position="fixed" style={{backgroundColor: '#212121', filter: 'drop-shadow(0 1px 10px #696969)'}}>
@@ -238,7 +239,7 @@ const Navbar = (props) => {
                 {
                   !isInSignUpProcess ? (
                     <>
-                      <Link to={PATHS.SUBSCRIPTIONS} style={linkStyle}>
+                      <Link to={PATHS.ORDERS} style={linkStyle}>
                         <Button
                           onClick={handleCloseNavMenu}
                           sx={{ my: 1, color: 'white', display: 'block'}}
@@ -246,12 +247,20 @@ const Navbar = (props) => {
                           Your Orders
                         </Button>
                       </Link>
-                      <Link to={PATHS.SUBSCRIPTIONS} style={linkStyle}>
+                      <Link to={PATHS.PROFILE} style={linkStyle}>
                         <Button
                           onClick={handleCloseNavMenu}
                           sx={{ my: 1, color: 'white', display: 'block'}}
                         >
                           Profile
+                        </Button>
+                      </Link>
+                      <Link to={PATHS.CHECKOUT} style={linkStyle}>
+                        <Button
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 1, color: 'white', display: 'block'}}
+                        >
+                          Checkout
                         </Button>
                       </Link>
                     </>
