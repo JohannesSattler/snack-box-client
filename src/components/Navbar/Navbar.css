@@ -18,14 +18,10 @@ nav {
   transition: color 0.2s ease-in-out;
 }
 
-.navlink-active {
-  line-height: 1px;
-  opacity: 1;
-  border-bottom: 5px solid rgb(69, 184, 79);
-}
-
-.navlink-inactive {
-  opacity: 0.7;
+.navlink:hover {
+  background-color: #252525;
+  transform: scale(1.01);
+  transition: 0.3s;
 }
 
 .authLink + .authLink {
