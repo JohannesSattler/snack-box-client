@@ -38,11 +38,8 @@ function InfoSnacks(props) {
         return setForm({ ...form, [event.target.name]: event.target.checked })
     }
 
-    async function handleFormSubmit() {
-        const base_url = process.env.REACT_APP_API_BASE_URL
-        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {snackInfo: form, signupStage: 2})
-        console.log(response.data)
-        setUser(response.data)
+    async function handleFormSubmit(e) {
+        props.onFormSubmit(e, {snackInfo: form, signupStage: 2})
     }
 
     return (

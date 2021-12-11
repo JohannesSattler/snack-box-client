@@ -46,15 +46,11 @@ function SubscriptionCard(props) {
 
         const base_url = process.env.REACT_APP_API_BASE_URL
         if(!isActive) {
-            console.log('Add')
             const response = await axios.patch(`${base_url}/user/${user._id}/subscriptions/${_id}/add`)
-            console.log(response.data)
             setUser(response.data)
         }
         else {
-            console.log('Remove')
             const response = await axios.patch(`${base_url}/user/${user._id}/subscriptions/${_id}/remove`)
-            console.log(response.data)
             setUser(response.data)
         }
     }

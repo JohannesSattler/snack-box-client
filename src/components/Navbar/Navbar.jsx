@@ -4,6 +4,8 @@ import "./Navbar.css";
 import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
 
+import {AccountBoxIcon, ShoppingCartIcon, LoginIcon, LogoutIcon, AppRegistrationIcon  } from '@mui/icons-material';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,6 +22,21 @@ import {UserContext} from '../../context/UserContext.js'
 
 const linkStyle = {color: 'white', textDecoration: 'none'}
 
+
+const links = {
+  'Home Page': PATHS.HOMEPAGE,
+  'Sign Up Stages': PATHS.SIGNUPSTAGES,
+  'Subscriptions': PATHS.SUBSCRIPTIONS,
+  'Products': PATHS.PRODUCTS,
+  'Your Orders': PATHS.ORDERS,
+  'Profile': PATHS.PROFILE,
+  'Checkout': PATHS.CHECKOUT,
+  'Sign Up': PATHS.SIGNUPPAGE,
+  'Login': PATHS.LOGINPAGE,
+}
+
+
+
 const Navbar = (props) => {
   const navigate = useNavigate();
   const {user, setUser} = useContext(UserContext)
@@ -27,19 +44,6 @@ const Navbar = (props) => {
   const [isInSignUpProcess, setIsInSignUpProcess] = useState(false)
 
   const [navchange, setNavChange] = useState(0)
-
-  useEffect(() => {
-    if(user && user.signupStage <= CONFIG.MAX_SIGNUP_STAGE) {
-      const pageRoute = {
-        0: 'personal-information',
-        1: 'snack-information',
-        2: 'payment-information',
-        3: 'subscription-information'
-      }
-
-      navigate('/signup/' + pageRoute[user.signupStage]);
-    }  
-  }, [navchange])
 
   useEffect(() => {
     if(!user) {
@@ -66,14 +70,12 @@ const Navbar = (props) => {
     setAnchorElNav(null);
   };
 
-  //console.log( user?.signupStage || 10 )
-
   return (
     <>
     <AppBar position="fixed" style={{backgroundColor: '#212121', filter: 'drop-shadow(0 1px 10px #696969)'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Link to={PATHS.HOMEPAGE} style={linkStyle}>
+            <Link to={!isInSignUpProcess ? PATHS.HOMEPAGE : PATHS.SIGNUPSTAGES} style={linkStyle}>
               <Typography
                 variant="h6"
                 noWrap
@@ -148,7 +150,7 @@ const Navbar = (props) => {
               component="div"
               sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
             >
-              <Link to={PATHS.HOMEPAGE} style={linkStyle}>
+              <Link to={!isInSignUpProcess ? PATHS.HOMEPAGE : PATHS.SIGNUPSTAGES} style={linkStyle}>
                   {CONSTS.CAPITALIZED_APP}
               </Link>
             </Typography>
@@ -185,7 +187,7 @@ const Navbar = (props) => {
               ( 
                 <>
                   <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                    <Typography 
+                    {/* <Typography 
                       gutterBottom 
                       variant="h9" 
                       component="h3" 
@@ -227,7 +229,7 @@ const Navbar = (props) => {
                       color={(user?.signupStage || 0) >= 4 ? 'rgb(69, 184, 79)' : 'rgb(131, 131, 131)'}
                       >
                         Subscription
-                      </Typography>
+                      </Typography> */}
                   </Box>
                 </>
               ) : (<></>)

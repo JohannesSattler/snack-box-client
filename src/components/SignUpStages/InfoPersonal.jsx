@@ -21,16 +21,13 @@ function InfoPersonal(props) {
         return setForm({ ...form, [name]: value });
     }
 
-    async function handleFormSubmit() {
+    async function handleFormSubmit(e) {
         if(!form.city || !form.postalCode || !form.street || !form.houseNumber) {
             setError('Please enter all required values *')
             return
         }
 
-        const base_url = process.env.REACT_APP_API_BASE_URL
-        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {signupStage: 1, adressInfo: form})
-        console.log(response.data)
-        setUser(response.data)
+        props.onFormSubmit(e, {signupStage: 1, adressInfo: form})
     }
 
     return (

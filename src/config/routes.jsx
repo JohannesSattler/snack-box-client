@@ -31,19 +31,19 @@ const routes = (props) => {
       element: <Signup {...props} />,
     },
     {
-      path: PATHS.SIGNUPPERSONAL,
+      path: PATHS.SIGNUPSTAGES,
       element: <SignUpStages {...props} />
     },
     {
-      path: PATHS.SIGNUPSNACKS,
+      path: PATHS.SIGNUPSTAGES,
       element: <SignUpStages {...props} />
     },
     {
-      path: PATHS.SIGNUPPAYMENTS,
+      path: PATHS.SIGNUPSTAGES,
       element: <SignUpStages {...props} />
     },
     {
-      path: PATHS.SIGNUPSUBSCRIPTION,
+      path: PATHS.SIGNUPSTAGES,
       element: <SignUpStages {...props} />
     },
     {

@@ -28,17 +28,11 @@ export default function App() {
     });
   }, []);
 
+  // Check if signup stages are over
   useEffect(() => {
     if(user && user.signupStage < CONFIG.MAX_SIGNUP_STAGE) {
       console.log(user.signupStage)
-      const pageRoute = {
-        0: '/signup/personal-information',
-        1: '/signup/snack-information',
-        2: '/signup/payment-information',
-        3: '/signup/subscription-information',
-      }
-      console.log('On Start nav change')
-      navigate('/signup/' + pageRoute[user.signupStage]);
+      navigate('/signup/signup-information');
     }  
   }, [isLoading])
 

@@ -32,7 +32,7 @@ function SubscriptionPage() {
         >
             {
                 subscriptions.map(subscription => {
-                    return <SubscriptionCard subscription={subscription}/>
+                    return <SubscriptionCard key={subscription._id} subscription={subscription}/>
                 })
             }
         </div>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from 'react-router';
 
-function InfoSubscription() {
+function InfoSubscription(props) {
     const navigation = useNavigate()
     const {user, setUser} = useContext(UserContext)
     const [error, setError] = useState()
@@ -18,16 +18,13 @@ function InfoSubscription() {
         return setForm({ ...form, [event.target.name]: event.target.checked })
     }
 
-    async function handleFormSubmit() {
+    async function handleFormSubmit(e) {
         if(!form.someModel1 && !form.someModel2) {
             setError('Please select atleast one subscription model!')
             return
         }
-
-        const base_url = process.env.REACT_APP_API_BASE_URL
-        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {subscriptions: ['61b1d9ad5e7350d8f9564ecb', '61b1d9ad5e7350d8f9564ecc'], signupStage: 10})
-        console.log(response.data)
-        setUser(response.data)
+        
+        props.onFormSubmit(e, {subscriptions: ['61b1d9ad5e7350d8f9564ecb', '61b1d9ad5e7350d8f9564ecc'], signupStage: 10})
         navigation('/')
     }
 

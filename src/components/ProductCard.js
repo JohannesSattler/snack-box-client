@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 
 function ProductCard(props) {
     const {_id, name, brand, image, sugars, salt, fat, price} = props.product
-    console.log(props.product)
+
     return (
         <Card sx={{ width: 300, margin: '10px'}} raised={true}>
                 <CardMedia

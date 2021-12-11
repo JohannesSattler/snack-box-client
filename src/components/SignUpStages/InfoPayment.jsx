@@ -3,7 +3,7 @@ import { Button, Alert, Container, Checkbox, FormControlLabel } from '@mui/mater
 import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
 
-function InfoPayment() {
+function InfoPayment(props) {
     const {user, setUser} = useContext(UserContext)
     const [error, setError] = useState()
     const [form, setForm] = useState({
@@ -16,16 +16,13 @@ function InfoPayment() {
         return setForm({ ...form, [event.target.name]: event.target.checked })
     }
 
-    async function handleFormSubmit() {
+    async function handleFormSubmit(e) {
         if(!form.paypal && !form.stripe) {
             setError('Please select atleast one payment option!')
             return
         }
 
-        const base_url = process.env.REACT_APP_API_BASE_URL
-        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {paymentInfo: form, signupStage: 3})
-        console.log(response.data)
-        setUser(response.data)
+        props.onFormSubmit(e, {paymentInfo: form, signupStage: 3})
     }
 
     return (
