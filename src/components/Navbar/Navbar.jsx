@@ -5,6 +5,7 @@ import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
 import * as CONFIG from '../../config/config'
 import {UserContext} from '../../context/UserContext.js'
+import { CheckoutContext } from "../../context/CheckoutContext";
 import NavLinkIcon from "../NavLinkIcon";
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -34,45 +35,13 @@ import {
 } from '@mui/material'
 
 
-
 const linkStyle = {color: 'white', textDecoration: 'none'}
 
-const linksLeft = [
-  { text: 'Home Page', path: PATHS.HOMEPAGE, icon: <Home/> },
-  { text: 'Subscriptions', path: PATHS.HOMEPAGE, icon: <AddBox/> },
-  { text: 'Products', path: PATHS.PRODUCTS, icon: <Category/> },
-]
-
-const linksRight = [
-  { text: 'Your Orders', path: PATHS.ORDERS, icon: <LocalShipping/> },
-  { text: 'Checkout', path: PATHS.CHECKOUT, icon: <ShoppingCart/> },
-  { text: 'Profile', path: PATHS.PROFILE, icon: <AccountBox/> },
-]
-
-const linksAuth = [
-  { text: 'Login', path: PATHS.LOGINPAGE, icon: <Login/> },
-  { text: 'Sign Up', path: PATHS.SIGNUPPAGE, icon: <AppRegistration/> },
-]
-
-const links = {
-  'Home Page': PATHS.HOMEPAGE,
-  'Sign Up Stages': PATHS.SIGNUPSTAGES,
-  'Subscriptions': PATHS.SUBSCRIPTIONS,
-  'Products': PATHS.PRODUCTS,
-  'Your Orders': PATHS.ORDERS,
-  'Profile': PATHS.PROFILE,
-  'Checkout': PATHS.CHECKOUT,
-  'Sign Up': PATHS.SIGNUPPAGE,
-  'Login': PATHS.LOGINPAGE,
-}
-
-
-
 const Navbar = (props) => {
-  const navigate = useNavigate();
   const {user, setUser} = useContext(UserContext)
-  const [anchorElNav, setAnchorElNav] = useState(null);
   const [isInSignUpProcess, setIsInSignUpProcess] = useState(false)
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const [navchange, setNavChange] = useState(0)
 
@@ -279,7 +248,7 @@ const Navbar = (props) => {
                     <>
                       <NavLinkIcon text={'Your Orders'} path={PATHS.ORDERS} Icon={LocalShipping} />
                       <NavLinkIcon text={'Profile'} path={PATHS.PROFILE} Icon={AccountBox} />
-                      <NavLinkIcon text={'Checkout'} path={PATHS.CHECKOUT} color={'info'} Icon={ShoppingCart} />
+                      <NavLinkIcon text={'Checkout'} path={PATHS.CHECKOUT} color={'info'} Icon={ShoppingCart}/>
                     </>
                   ) : (<></>)
                 }

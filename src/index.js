@@ -5,6 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { UserProvider } from "./context/UserContext";
+import { CheckoutProvider } from "./context/CheckoutContext";
 
 const theme = createTheme();
 
@@ -13,7 +14,9 @@ ReactDOM.render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <UserProvider>
-          <App />
+          <CheckoutProvider>
+            <App />
+          </CheckoutProvider>
         </UserProvider>
       </ThemeProvider>
     </BrowserRouter>

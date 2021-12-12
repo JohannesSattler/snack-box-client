@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { TextField, Button, Box, Grid, Alert, Container } from '@mui/material';
+import { TextField, Button, Box, Grid, Alert, Container, Typography } from '@mui/material';
 import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
 
@@ -27,14 +27,17 @@ function InfoPersonal(props) {
             return
         }
 
-        props.onFormSubmit(e, {signupStage: 1, adressInfo: form})
+        props.onFormSubmit(e, {signupStage: 3, adressInfo: form})
     }
 
     return (
         <>
+            <Typography align="center" variant="h5" gutterBottom>
+                Please enter your adreess
+            </Typography>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <TextField style={{margin: '10px'}} required onChange={handleInputChange} label="City" name="city"/>
+                    <TextField style={{margin: '10px'}} required autoFocus onChange={handleInputChange} label="City" name="city"/>
                     <TextField style={{margin: '10px'}} required onChange={handleInputChange} label="Postal code" name="postalCode"/>
                 </Grid>
                 <Grid item xs={12}>
@@ -42,7 +45,7 @@ function InfoPersonal(props) {
                     <TextField style={{margin: '10px'}} required onChange={handleInputChange} label="House number" name="houseNumber"/>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField onChange={handleInputChange} label="Additional info" name="additionalInfo"/>
+                    <TextField onChange={handleInputChange} style={{margin: '10px', backgroundColor: 'white'}} label="Additional info" name="additionalInfo"/>
                 </Grid>
                 <Grid item xs={12}>
                         {

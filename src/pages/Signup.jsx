@@ -56,15 +56,7 @@ export default function Signup({ authenticate }) {
       authenticate(res.data.user);
 
       if(res.data.user && res.data.user.signupStage < CONFIG.MAX_SIGNUP_STAGE) {
-        console.log(res.data.user.signupStage)
-        const pageRoute = {
-          0: 'personal-information',
-          1: 'snack-information',
-          2: 'payment-information',
-          3: 'subscription-information'
-        }
-        console.log('On Start nav change')
-        navigate('/signup/' + pageRoute[res.data.user.signupStage]);
+        navigate('/signup/signup-information');
       } 
       else {
         navigate(PATHS.HOMEPAGE);

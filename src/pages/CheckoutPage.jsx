@@ -14,28 +14,28 @@ import { Link } from 'react-router-dom';
 import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+import { CheckoutContext } from '../context/CheckoutContext';
 import Loading from '../components/Loading/index'
 import SubscriptionCard from '../components/SubscriptionCard';
 import SubscriptionCardSmall from '../components/SubscriptionCardSmall';
 import AdressInfo from '../components/AdressInfo';
 
+
 function CheckoutPage() {
-    const [subscriptions, setSubscriptions] = useState(null)
-    const [total, setTotal] = useState(0)
     const {user, setUser} = useContext(UserContext)
+    const {checkoutItems, setCheckoutItems, total, setTotal} = useContext(CheckoutContext)
 
     useEffect(() => {
         (async() => {
             // get the current subscription model
             const base_url = process.env.REACT_APP_API_BASE_URL
             const response = await axios.get(base_url + '/user/' + user._id + '/subscriptions')
-            console.log(response.data)
-            setSubscriptions(response.data.subscriptions)
+            setCheckoutItems(response.data.subscriptions)
             setTotal(response.data.total)
         })()
     }, [])
 
-    if(!subscriptions) {
+    if(!checkoutItems) {
         return <Loading></Loading>
     }
 
@@ -46,8 +46,8 @@ function CheckoutPage() {
                 <AdressInfo adress={user.adressInfo}/>
                 <Divider/>
                 {
-                    subscriptions.map(subscription => {
-                        return <SubscriptionCardSmall subscription={subscription}/> 
+                    checkoutItems.map(subscription => {
+                        return <SubscriptionCardSmall key={subscription._id} subscription={subscription}/> 
                     })
                 }
                 <Divider/>

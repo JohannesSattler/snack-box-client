@@ -1,65 +1,72 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { Button, Alert, Container, Checkbox, FormControlLabel } from '@mui/material';
+import { Button, Alert, Container, Checkbox, FormControlLabel, Typography, Divider } from '@mui/material';
 import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from 'react-router';
+import Loading from '../Loading/index'
+import { Box } from '@mui/system';
+import SubscriptionCard from '../SubscriptionCard';
+import SubscriptionCardSmall from '../SubscriptionCardSmall';
 
 function InfoSubscription(props) {
     const navigation = useNavigate()
     const {user, setUser} = useContext(UserContext)
     const [error, setError] = useState()
-    const [form, setForm] = useState({
-        someModel1: false,
-        someModel2: false,
-    }) 
+    const [form, setForm] = useState() 
+    const [subscriptions, setSubscription] = useState()
 
+    useEffect(() => {
+        (async() => {
+            const base_url = process.env.REACT_APP_API_BASE_URL
+            const response = await axios.get(base_url + '/subscriptions/')
+            setSubscription(response.data.splice(0, 3))
+        })()
+    }, [])
+    
     function handleCheckBoxChange(event) {
         setError()
         return setForm({ ...form, [event.target.name]: event.target.checked })
     }
 
     async function handleFormSubmit(e) {
-        if(!form.someModel1 && !form.someModel2) {
-            setError('Please select atleast one subscription model!')
-            return
-        }
-        
-        props.onFormSubmit(e, {subscriptions: ['61b1d9ad5e7350d8f9564ecb', '61b1d9ad5e7350d8f9564ecc'], signupStage: 10})
-        navigation('/')
+        props.onFormSubmit(e, {signupStage: 2})
+    }
+
+    if(!subscriptions) {
+        return <Loading></Loading>
     }
 
     return (
         <Container maxWidth="xl">
-        <FormControlLabel
-            control={
-                <Checkbox onChange={handleCheckBoxChange} name="someModel1" />
-            }
-            label="someModel1"
-        />
-        <FormControlLabel
-            control={
-                <Checkbox onChange={handleCheckBoxChange} name="someModel2" />
-            }
-            label="someModel2"
-        />
+            <Typography align="center" variant="h5" gutterBottom>
+                Add a plan to your cart
+            </Typography>
+            <Divider/>
+            <Box alignItems="center" alignSelf="center" display="flex" flexDirection="row">
+                {
+                    subscriptions.map(subscription => {
+                        return (<SubscriptionCard key={subscription._id} subscription={subscription} />)
+                    })
+                }
+            </Box>  
 
-        <br/>
-        {
-            error ? (
-                <Alert style={{maxWidth: '500px', margin: '0 auto'}} variant="filled" severity="error">
-                    {error}
-                </Alert>
-            ) : (<></>)
-        }
-        <Button
-        type="submit"
-        variant="contained"
-        onClick={handleFormSubmit}
-        sx={{ mt: 1, mb: 2 }}
-        >
-        Save
-        </Button>
-
+            <br/>
+            {
+                error ? (
+                    <Alert style={{maxWidth: '500px', margin: '0 auto'}} variant="filled" severity="error">
+                        {error}
+                    </Alert>
+                ) : (<></>)
+            }
+            <Divider/>
+            <Button
+            type="submit"
+            variant="contained"
+            onClick={handleFormSubmit}
+            sx={{ mt: 1, mb: 2 }}
+            >
+            Next
+            </Button>
     </Container>
     )
 }

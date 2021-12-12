@@ -2,8 +2,10 @@ import React, {useState, useEffect, useContext} from 'react'
 import { Button, Alert, Container, Checkbox, FormControlLabel } from '@mui/material';
 import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from 'react-router';
 
 function InfoPayment(props) {
+    const navigation = useNavigate()
     const {user, setUser} = useContext(UserContext)
     const [error, setError] = useState()
     const [form, setForm] = useState({
@@ -22,7 +24,8 @@ function InfoPayment(props) {
             return
         }
 
-        props.onFormSubmit(e, {paymentInfo: form, signupStage: 3})
+        props.onFormSubmit(e, {paymentInfo: form, signupStage: 10})
+        navigation('/')
     }
 
     return (

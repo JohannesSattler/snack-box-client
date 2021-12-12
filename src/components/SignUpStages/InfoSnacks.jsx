@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { Button, Alert, Container, Slider, Typography, ToggleButtonGroup, ToggleButton, Checkbox, FormControlLabel } from '@mui/material';
+import { Button, Alert, Container, Slider, Typography, ToggleButtonGroup, ToggleButton, Checkbox, FormControlLabel, TableContainer, Paper, TableBody, TableRow, TableCell, Grid, Divider } from '@mui/material';
 import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
+import { Box } from '@mui/system';
 
 function InfoSnacks(props) {
     const {user, setUser} = useContext(UserContext)
@@ -39,73 +40,115 @@ function InfoSnacks(props) {
     }
 
     async function handleFormSubmit(e) {
-        props.onFormSubmit(e, {snackInfo: form, signupStage: 2})
+        props.onFormSubmit(e, {snackInfo: form, signupStage: 1})
     }
 
     return (
         <Container maxWidth="xl">
-            <Typography id="input-slider" gutterBottom>
-                Amount of People
+            <Typography align="center" variant="h5" gutterBottom>
+                What snacks do you like?
             </Typography>
-            <Slider
-            onChange={handleInputChange}
-            name="amountPeople"
-            defaultValue={1}
-            step={1}
-            marks
-            min={0}
-            max={8}
-            valueLabelDisplay="auto"
-            />
+            <Divider/>
+            <Grid container sx={{p: 2}}>
+                <Grid item xs={4}>
+                    <Typography align="left" id="input-slider" gutterBottom>
+                        How often do you snack a day?
+                    </Typography>
+                </Grid>
+                <Grid item xs={8}>
+                    <ToggleButtonGroup
+                    style={{float: 'right'}}
+                    color="primary"
+                    exclusive
+                    value={alignment}
+                    name='perDay'
+                    onChange={handleAlignmentChange}
+                    size="small"
+                    >
+                        <ToggleButton name='perDay' value="not-often">not often</ToggleButton>
+                        <ToggleButton name='perDay' value="often">often</ToggleButton>
+                        <ToggleButton name='perDay' value="all-the-time">All the time</ToggleButton>
+                    </ToggleButtonGroup>
+                </Grid>
+            </Grid>
+            <Divider/>
 
-            <Typography id="input-slider" gutterBottom>
-                How often do you snack a day?
-            </Typography>
-            <ToggleButtonGroup
-            color="primary"
-            exclusive
-            value={alignment}
-            name='perDay'
-            onChange={handleAlignmentChange}
-            >
-                <ToggleButton name='perDay' value="not-often">not often</ToggleButton>
-                <ToggleButton name='perDay' value="often">often</ToggleButton>
-                <ToggleButton name='perDay' value="all-the-time">All the time</ToggleButton>
-            </ToggleButtonGroup>
-            
-            <Typography id="input-slider" gutterBottom>
-                What type of snacks do you like?
-            </Typography>
-            <FormControlLabel
-                control={
-                    <Checkbox onChange={handleCheckBoxChange} name="sweet" />
-                }
-                label="sweet"
-            />
-            <FormControlLabel
-                control={
-                    <Checkbox onChange={handleCheckBoxChange} name="salty" />
-                }
-                label="salty"
-            />
-            <FormControlLabel
-                control={
-                    <Checkbox onChange={handleCheckBoxChange} name="organic" />
-                }
-                label="organic"
-            />
-            <FormControlLabel
-                control={
-                    <Checkbox onChange={handleCheckBoxChange} name="vegan" />
-                }
-                label="vegan"
-            />
-            <FormControlLabel
-                control={
-                    <Checkbox onChange={handleCheckBoxChange} name="vegetarian" />
-                }
-                label="vegetarian"
-            />
+            <Grid container sx={{p: 2}}>
+                <Grid item xs={8}>
+                    <Typography align="left" id="input-slider" gutterBottom>
+                        How many snack partners do you have?
+                    </Typography>
+                </Grid>
+                <Grid item xs={4}>
+                    <Slider
+                    style={{width: '100%', float: 'right'}}
+                    onChange={handleInputChange}
+                    name="amountPeople"
+                    defaultValue={1}
+                    step={1}
+                    marks
+                    min={1}
+                    max={8}
+                    valueLabelDisplay="auto"
+                    />
+                </Grid>
+            </Grid>
+            <Divider/>
+
+            <Grid container sx={{p: 2}}>
+                <Grid item xs={7}>
+                    <Typography align="left" id="input-slider" gutterBottom>
+                        How do you want your snacks?
+                    </Typography>
+                </Grid>
+                <Grid item xs={5}>
+                    <Box style={{ float: 'right'}}>
+                        <FormControlLabel
+                            control={
+                                <Checkbox onChange={handleCheckBoxChange} name="sweet" />
+                            }
+                            label="sweet"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox onChange={handleCheckBoxChange} name="salty" />
+                            }
+                            label="salty"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox onChange={handleCheckBoxChange} name="organic" />
+                            }
+                            label="organic"
+                        />
+                    </Box>
+                </Grid>
+            </Grid>
+            <Divider/>
+
+            <Grid container sx={{p: 2}}>
+                <Grid item xs={8}>
+                    <Typography align="left" id="input-slider" gutterBottom>
+                        Are you vegetarian or vegan?
+                    </Typography>
+                </Grid>
+                <Grid item xs={4}>
+                    <Box style={{ float: 'right'}}>
+                        <FormControlLabel
+                            control={
+                                <Checkbox onChange={handleCheckBoxChange} name="vegan" />
+                            }
+                            label="vegan"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox onChange={handleCheckBoxChange} name="vegetarian" />
+                            }
+                            label="vegetarian"
+                        />
+                    </Box>
+                </Grid>
+            </Grid>
 
             <br/>
             {
@@ -115,6 +158,7 @@ function InfoSnacks(props) {
                     </Alert>
                 ) : (<></>)
             }
+            <Divider/>
             <Button
             type="submit"
             variant="contained"

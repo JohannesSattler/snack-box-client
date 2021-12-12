@@ -8,6 +8,7 @@ import * as USER_HELPERS from "./utils/userToken";
 import * as CONFIG from './config/config'
 
 import { UserContext } from "./context/UserContext";
+import { CheckoutContext } from "./context/CheckoutContext";
 
 export default function App() {
   const navigate = useNavigate()
