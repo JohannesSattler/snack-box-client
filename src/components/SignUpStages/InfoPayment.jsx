@@ -1,8 +1,10 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { Button, Alert, Container, Checkbox, FormControlLabel } from '@mui/material';
+import { Button, Alert, Container, Checkbox, FormControlLabel, Divider } from '@mui/material';
 import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from 'react-router';
+import Paypal from '../Paypal';
+import Stripe from '../Stripe';
 
 function InfoPayment(props) {
     const navigation = useNavigate()
@@ -30,36 +32,13 @@ function InfoPayment(props) {
 
     return (
         <Container maxWidth="xl">
-            <FormControlLabel
-                control={
-                    <Checkbox onChange={handleCheckBoxChange} name="paypal" />
-                }
-                label="paypal"
-            />
-            <FormControlLabel
-                control={
-                    <Checkbox onChange={handleCheckBoxChange} name="stripe" />
-                }
-                label="stripe"
-            />
-
-            <br/>
-            {
-                error ? (
-                    <Alert style={{maxWidth: '500px', margin: '0 auto'}} variant="filled" severity="error">
-                        {error}
-                    </Alert>
-                ) : (<></>)
-            }
-            <Button
-            type="submit"
-            variant="contained"
-            onClick={handleFormSubmit}
-            sx={{ mt: 1, mb: 2 }}
-            >
-            Save
-            </Button>
-
+                <br/>
+                <Stripe/>
+                <Divider/>
+                <br/>
+                <Paypal/>
+                <br/>
+                <Divider/>
         </Container>
     )
 }

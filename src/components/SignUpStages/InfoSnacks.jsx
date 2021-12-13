@@ -45,7 +45,7 @@ function InfoSnacks(props) {
 
     return (
         <Container maxWidth="xl">
-            <Typography align="center" variant="h5" gutterBottom>
+            <Typography align="center" variant="body1" gutterBottom>
                 What snacks do you like?
             </Typography>
             <Divider/>

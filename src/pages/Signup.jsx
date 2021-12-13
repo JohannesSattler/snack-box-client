@@ -17,6 +17,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
 
+import { CircleTwoTone, Badge } from "@mui/icons-material";
+
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     email: "",
@@ -92,9 +94,13 @@ export default function Signup({ authenticate }) {
                 label="First Name"
                 name="firstName"
                 autoComplete="firstName"
+                variant="standard"
                 onChange={handleInputChange}
                 autoFocus
                 style={{marginRight: 2}}
+                InputProps={{
+                  startAdornment: <Badge fontSize="small" color="action" sx={{mr: 1}}/>
+                }}
               />
               <TextField
                 margin="dense"

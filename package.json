@@ -7,9 +7,13 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.1",
     "@mui/material": "^5.2.3",
+    "@paypal/react-paypal-js": "^7.5.0",
+    "@stripe/react-stripe-js": "^1.6.0",
+    "@stripe/stripe-js": "^1.22.0",
     "axios": "^0.24.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-lottie": "^1.2.3",
     "react-router-dom": "^6.0.2",
     "react-scripts": "^4.0.3"
   },

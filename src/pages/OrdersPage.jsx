@@ -10,9 +10,10 @@ import {
     Button,
     Paper,
     Divider,
-    Link,
+    CardMedia,
 } from '@mui/material'
 import React, {useState, useEffect, useContext} from 'react'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import Loading from '../components/Loading/index'
@@ -62,9 +63,39 @@ function OrdersPage() {
     return (
         <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
             <Typography align="center" variant="h3">Your Orders</Typography>
-            <Box sx={{ maxWidth: 400, margin: '0 auto'}}>
-                <SubscriptionCardSmall subscription={subscription}/>
-                <Stepper activeStep={activeStep} orientation="vertical">
+            <Box sx={{ maxWidth: 800, margin: '0 auto', display: 'flex'}}>
+                <Box sx={{ maxWidth: 300, margin: '10px 20px'}}>
+                    {
+                        subscription && (
+                            <>
+                            <CardMedia
+                            component="img"
+                            style={{objectFit: 'contain', borderRadius: '20px'}}
+                            width="400"
+                            image={subscription.image}
+                            alt={subscription.title}
+                            />
+                            <br/>
+                            <Divider />
+                            <Typography gutterBottom noWrap={true} variant="h5" component="div">
+                                {subscription.title}
+                            </Typography>
+                            <Typography variant="body2" noWrap={true} color="text.secondary">
+                                {subscription.description}
+                            </Typography>
+                            <Link to={'/subscriptions/' + subscription._id} style={{textDecoration: 'none'}}>
+                                <Button
+                                variant="text"
+                                style={{margin: '0px 0', height: '40px'}}
+                                >
+                                See more
+                                </Button>
+                            </Link>
+                            </>
+                        )
+                    }
+                </Box>
+                <Stepper activeStep={activeStep} orientation="vertical" sx={{ maxWidth: 500}}>
                     {steps.map((step, index) => (
                         <Step key={step.label}>
                             <StepLabel>

@@ -19,45 +19,31 @@ import Loading from '../components/Loading/index'
 import SubscriptionCard from '../components/SubscriptionCard';
 import SubscriptionCardSmall from '../components/SubscriptionCardSmall';
 import AdressInfo from '../components/AdressInfo';
+import CheckOut from '../components/CheckOut';
+import Paypal from '../components/Paypal';
+import Stripe from '../components/Stripe';
 
 
 function CheckoutPage() {
     const {user, setUser} = useContext(UserContext)
-    const {checkoutItems, setCheckoutItems, total, setTotal} = useContext(CheckoutContext)
+    const {checkoutItems} = useContext(CheckoutContext)
 
-    useEffect(() => {
-        (async() => {
-            // get the current subscription model
-            const base_url = process.env.REACT_APP_API_BASE_URL
-            const response = await axios.get(base_url + '/user/' + user._id + '/subscriptions')
-            setCheckoutItems(response.data.subscriptions)
-            setTotal(response.data.total)
-        })()
-    }, [])
-
-    if(!checkoutItems) {
-        return <Loading></Loading>
-    }
 
     return (
         <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
             <Typography align="center" variant="h3">Checkout</Typography>
-            <Box sx={{ maxWidth: 600, margin: '0 auto'}}>
+            <Box sx={{ maxWidth: 900, margin: '0 auto'}}>
                 <AdressInfo adress={user.adressInfo}/>
+                <br/>
+                <CheckOut/>
                 <Divider/>
-                {
-                    checkoutItems.map(subscription => {
-                        return <SubscriptionCardSmall key={subscription._id} subscription={subscription}/> 
-                    })
-                }
+                <br/>
+                <Stripe/>
                 <Divider/>
-                <Typography variant='h4'><b>Total: </b>{total} €</Typography>
+                <br/>
+                <Paypal/>
+                <br/>
             </Box>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
         </Container>
     )
 }
