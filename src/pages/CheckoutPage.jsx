@@ -26,8 +26,42 @@ import Stripe from '../components/Stripe';
 
 function CheckoutPage() {
     const {user, setUser} = useContext(UserContext)
-    const {checkoutItems} = useContext(CheckoutContext)
+    const {checkoutItems, setCheckoutItems} = useContext(CheckoutContext)
 
+    async function handlePaymentAprroved(e)  {
+        const orderArray = []
+
+        checkoutItems.forEach(async item => {
+            const newOrder = {
+                user: user._id,
+                subscription: item._id,
+                status: {
+                    packBox: {
+                      date: new Date(),
+                      additionalInfo: 'There is No Info here',
+                      current: true
+                    },
+                    orderOnWay: {
+                      date: new Date(),
+                      additionalInfo: 'There is No Info here',
+                      current: false,
+                      trackingLink: 'There is No Info here'
+                    },
+                    arrived: {
+                      date: new Date(),
+                      additionalInfo: 'There is No Info here',
+                      current: false
+                    }
+                  }
+            }
+            orderArray.push(newOrder)
+        })
+
+
+        const base_url = process.env.REACT_APP_API_BASE_URL
+        const response = await axios.patch(base_url + '/user/' + user._id + '/orders/add', orderArray)
+        console.log(response)
+    }
 
     return (
         <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
@@ -38,10 +72,10 @@ function CheckoutPage() {
                 <CheckOut/>
                 <Divider/>
                 <br/>
-                <Stripe/>
+                <Stripe onApprove={handlePaymentAprroved}/>
                 <Divider/>
                 <br/>
-                <Paypal/>
+                <Paypal onApprove={handlePaymentAprroved}/>
                 <br/>
             </Box>
         </Container>

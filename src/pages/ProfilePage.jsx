@@ -40,11 +40,6 @@ function ProfilePage() {
                 <SnackInfo/>
                 <Divider/>
             </Box>
-
-            <Box >
-
-            </Box>
-
         </Container>
     )
 }

@@ -7,7 +7,7 @@ import {
 import { Button } from "@mui/material";
 import Loading from './Loading/index'
 
-export default function CheckoutForm() {
+export default function CheckoutForm(props) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -76,6 +76,8 @@ export default function CheckoutForm() {
     }
 
     setIsLoading(false);
+    
+    props.onApprove()
   };
 
   return (

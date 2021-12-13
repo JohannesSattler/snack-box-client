@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
-function Stripe() {
+function Stripe(props) {
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
@@ -33,7 +33,7 @@ function Stripe() {
         <Box sx={{m: 3, maxWidth: '500px', margin: '0 auto'}}> 
             {clientSecret && (
                 <Elements options={options} stripe={stripePromise}>
-                    <CheckoutForm />
+                    <CheckoutForm onApprove={props.onApprove}/>
                 </Elements>
             )}
         </Box>

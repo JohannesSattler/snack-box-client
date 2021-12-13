@@ -47,14 +47,14 @@ function Paypal(props) {
 
     const onApprove = (data, actions) => {
         return actions.order.capture().then(async function (details) {
-        const { payer } = details;
-        console.log(payer)
+            const { payer } = details;
+            console.log(payer)
 
-        const base_url = process.env.REACT_APP_API_BASE_URL
-        const response = await axios.patch(base_url + '/user/' + user._id + '/update', {paymentInfo: {paypal: payer}})
-        setUser(response.data)
-        setSuccess(true);
-        navigate('/orders')
+            const base_url = process.env.REACT_APP_API_BASE_URL
+            const response = await axios.patch(base_url + '/user/' + user._id + '/update', {paymentInfo: {paypal: payer}})
+            setUser(response.data)
+            setSuccess(true);
+            props.onApprove()
         });
     };
 
