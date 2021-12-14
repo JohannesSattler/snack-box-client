@@ -19,6 +19,7 @@ import { UserContext } from '../context/UserContext';
 import Loading from '../components/Loading/index'
 import SubscriptionCard from '../components/SubscriptionCard';
 import SubscriptionCardSmall from '../components/SubscriptionCardSmall';
+import Order from '../components/Order';
 
 const steps = [
     {
@@ -41,29 +42,31 @@ const steps = [
 
 function OrdersPage() {
     const [activeStep, setActiveStep] = useState(0);
-    const [subscription, setSubscription] = useState(null)
+    const [orders, setOrders] = useState(null)
     const {user, setUser} = useContext(UserContext)
     
     useEffect(() => {
         (async() => {
             // CHANGE that to the current subscription model the user has defined
-            const someID = '61b1d9ad5e7350d8f9564ecb'
-            // get the current subscription model
             const base_url = process.env.REACT_APP_API_BASE_URL
-            const response = await axios.get(base_url + '/subscriptions/' + someID)
-            console.log(response.data)
-            setSubscription(response.data)
+            const response = await axios.get(base_url + '/user/' + user._id + '/orders')
+            console.log(response.data.orders)
+            setOrders(response.data.orders)
         })()
     }, [])
 
-    if(!subscription) {
+    if(!orders) {
         return <Loading></Loading>
     }
 
     return (
         <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
             <Typography align="center" variant="h3">Your Orders</Typography>
-            
+            {
+                orders.map(order => {
+                   return  <Order key={order._id} order={order} status={order.status} subscription={order.subscription}/>
+                })
+            }
         </Container>
     )
 }

@@ -10,7 +10,7 @@ import {
     Paper,
     Divider,
 } from '@mui/material'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
@@ -25,6 +25,7 @@ import Stripe from '../components/Stripe';
 
 
 function CheckoutPage() {
+    const navigate = useNavigate()
     const {user, setUser} = useContext(UserContext)
     const {checkoutItems, setCheckoutItems} = useContext(CheckoutContext)
 
@@ -36,20 +37,29 @@ function CheckoutPage() {
                 user: user._id,
                 subscription: item._id,
                 status: {
+                    orderReceived: {
+                        label: 'We have received your Order.',
+                        date: new Date(),
+                        additionalInfo: '',
+                        current: true
+                    },
                     packBox: {
+                      label: 'We just packed your box!',
                       date: new Date(),
-                      additionalInfo: 'There is No Info here',
-                      current: true
+                      additionalInfo: '',
+                      current: false
                     },
                     orderOnWay: {
+                      label: 'Snacks are on the way!',
                       date: new Date(),
-                      additionalInfo: 'There is No Info here',
+                      additionalInfo: '',
                       current: false,
-                      trackingLink: 'There is No Info here'
+                      trackingLink: ''
                     },
                     arrived: {
+                      label: 'Oh man start snacking!',
                       date: new Date(),
-                      additionalInfo: 'There is No Info here',
+                      additionalInfo: '',
                       current: false
                     }
                   }
@@ -61,6 +71,8 @@ function CheckoutPage() {
         const base_url = process.env.REACT_APP_API_BASE_URL
         const response = await axios.patch(base_url + '/user/' + user._id + '/orders/add', orderArray)
         console.log(response)
+        setCheckoutItems(null)
+        navigate('/orders')
     }
 
     return (

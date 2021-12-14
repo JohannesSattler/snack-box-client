@@ -20,7 +20,6 @@ function Paypal(props) {
     const createOrder = (data, actions) => {
         const purchaseUnits = checkoutItems.map(item => {
             const plan = {
-                reference_id: item._id,
                 description: item.title,
                 amount: {
                     currency_code: "EUR",

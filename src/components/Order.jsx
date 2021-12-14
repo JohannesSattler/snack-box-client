@@ -17,29 +17,44 @@ import React, {useState, useEffect} from 'react'
 function Order(props) {
     const {status, subscription} = props
     const [activeStep, setActiveStep] = useState(0);
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
-        if(status.packBox.current) {
+        if(status.orderReceived.current) {
             setActiveStep(0)
+            const message = 
+            `Thanks for trusting in SnackBox. We just received your order and we will pack you box with lightspeed!`
+            setMessage(message)
+        }
+        else if(status.packBox.current) {
+            setActiveStep(1)
+            const message = 
+            `Oh man snacks are nice and so are you! We love snacks thats why we will send your box as fast as possible!`
+            setMessage(message)
         }
         else if(status.orderOnWay.current) {
-            setActiveStep(1)
+            setActiveStep(2)
+            const message = 
+            `Oh nice your box is on da way. Turn on Netflix and get hyped!`
+            setMessage(message)
         }
         else if(status.arrived.current) {
-            setActiveStep(2)
+            setActiveStep(3)
+            const message = 
+            `Oh boi we hope you have a beautifull time with your awesome snacks!`
+            setMessage(message)
         }
     }, [])
 
     return (
-        <Box sx={{ maxWidth: 800, margin: '0 auto', display: 'flex'}}>
-            <Box sx={{ maxWidth: 300, margin: '10px 20px'}}>
+        <Box raised sx={{ maxWidth: 800, margin: '10px auto', display: 'flex', flexWrap: 'wrap', padding: '10px', borderRadius: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
+            <Box sx={{ maxWidth: 300, margin: '10px auto'}}>
                 {
                 subscription && (
                         <>
                         <CardMedia
                         component="img"
                         style={{objectFit: 'contain', borderRadius: '20px'}}
-                        width="400"
                         image={subscription.image}
                         alt={subscription.title}
                         />
@@ -63,16 +78,21 @@ function Order(props) {
                     )
                 }
             </Box>
-            <Stepper activeStep={activeStep} orientation="vertical" sx={{ maxWidth: 500}}>
+            <Stepper activeStep={activeStep} orientation="vertical" sx={{ maxWidth: 400, marginLeft: '10px', margin: '0 auto'}}>
                 {Object.keys(status).map((key, index) => (
-                    <Step key={status[key].label + index}>
+                    <Step key={props.order._id + index}>
                         <StepLabel>
                             <Typography variant="h5">{status[key].label}</Typography>
-                            <Typography align="left" color="primary" variant="subtitle2"><i><b>{status[key].date}</b></i></Typography>
                         </StepLabel>
                         <StepContent>
+                            <Typography align="left" color="primary" variant="subtitle2"><i><b>{new Date(status[key].date).toLocaleString()}</b></i></Typography>
                             <Divider/>
-                            <Typography align="left" variant="body1">{status[key].additionalInfo}</Typography>
+                            <Typography align="left" variant="body1">{message}</Typography>
+                            <br/>
+                            <Typography align="left" variant="body2">If you are facing issues hit us up on: <b>helpme@snackbox.com</b></Typography>
+                            <Typography align="left" variant="body2"><i>{status[key].additionalInfo}</i></Typography>
+                            
+                            
                             {status[key].trackingLink ? 
                                 (
                                     <Typography align="left" variant="body1">

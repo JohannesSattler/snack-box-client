@@ -31,6 +31,8 @@ export default function CheckoutForm(props) {
       switch (paymentIntent.status) {
         case "succeeded":
           setMessage("Payment succeeded!");
+          console.log('Payment succeeded!')
+          props.onApprove()
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -58,8 +60,7 @@ export default function CheckoutForm(props) {
     const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-            // Make sure to change this to your payment completion page
-            return_url: "http://localhost:3000/orders",
+            return_url: "http://localhost:3000/checkout",
         },
     });
 
@@ -77,7 +78,6 @@ export default function CheckoutForm(props) {
 
     setIsLoading(false);
     
-    props.onApprove()
   };
 
   return (
