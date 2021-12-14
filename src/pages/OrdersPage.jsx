@@ -43,7 +43,7 @@ function OrdersPage() {
     const [activeStep, setActiveStep] = useState(0);
     const [subscription, setSubscription] = useState(null)
     const {user, setUser} = useContext(UserContext)
-
+    
     useEffect(() => {
         (async() => {
             // CHANGE that to the current subscription model the user has defined
@@ -63,63 +63,7 @@ function OrdersPage() {
     return (
         <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
             <Typography align="center" variant="h3">Your Orders</Typography>
-            <Box sx={{ maxWidth: 800, margin: '0 auto', display: 'flex'}}>
-                <Box sx={{ maxWidth: 300, margin: '10px 20px'}}>
-                    {
-                        subscription && (
-                            <>
-                            <CardMedia
-                            component="img"
-                            style={{objectFit: 'contain', borderRadius: '20px'}}
-                            width="400"
-                            image={subscription.image}
-                            alt={subscription.title}
-                            />
-                            <br/>
-                            <Divider />
-                            <Typography gutterBottom noWrap={true} variant="h5" component="div">
-                                {subscription.title}
-                            </Typography>
-                            <Typography variant="body2" noWrap={true} color="text.secondary">
-                                {subscription.description}
-                            </Typography>
-                            <Link to={'/subscriptions/' + subscription._id} style={{textDecoration: 'none'}}>
-                                <Button
-                                variant="text"
-                                style={{margin: '0px 0', height: '40px'}}
-                                >
-                                See more
-                                </Button>
-                            </Link>
-                            </>
-                        )
-                    }
-                </Box>
-                <Stepper activeStep={activeStep} orientation="vertical" sx={{ maxWidth: 500}}>
-                    {steps.map((step, index) => (
-                        <Step key={step.label}>
-                            <StepLabel>
-                                <Typography variant="h5">{step.label}</Typography>
-                                <Typography align="left" color="primary" variant="subtitle2"><i><b>{step.date}</b></i></Typography>
-                            </StepLabel>
-                            <StepContent>
-                                <Divider/>
-                                <Typography align="left" variant="body1">{step.description}</Typography>
-                                {step.trackingLink ? 
-                                    (
-                                        <Typography align="left" variant="body1">
-                                            <Link style={{left: 0}} variant="subtitle2" href={step.trackingLink} underline="hover">
-                                                tracking link
-                                            </Link>
-                                        </Typography>
-                                    )
-                                : (<></>)
-                                }
-                            </StepContent>
-                        </Step>
-                    ))}
-                </Stepper>
-            </Box>
+            
         </Container>
     )
 }
