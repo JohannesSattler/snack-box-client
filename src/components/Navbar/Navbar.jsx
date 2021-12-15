@@ -85,11 +85,11 @@ const Navbar = (props) => {
               <CardMedia
                 component="img"
                 style={{objectFit: 'contain', opacity: '1'}}
-                height="30"
-                image={'/snackbox_logo.png'}
+                height="40"
+                image={'/logo-big.png'}
                 alt="snackbox logo"
               />
-                Snack Box
+                
               </Typography>
             </Link>
 

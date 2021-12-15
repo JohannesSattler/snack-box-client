@@ -78,7 +78,7 @@ function Order(props) {
                     )
                 }
             </Box>
-            <Stepper activeStep={activeStep} orientation="vertical" sx={{ maxWidth: 400, marginLeft: '10px', margin: '0 auto'}}>
+            <Stepper activeStep={0} orientation="vertical" sx={{ maxWidth: 400, marginLeft: '10px', margin: '0 auto'}}>
                 {Object.keys(status).map((key, index) => (
                     <Step key={props.order._id + index}>
                         <StepLabel>

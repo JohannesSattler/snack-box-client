@@ -1,0 +1,50 @@
+
+.header {
+    position: absolute;
+    top: 50px;
+    background-color: rgb(135, 243, 243);
+    background: url("../assets/background-drip.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
+    width: 100%;
+    height: 500px;
+}
+
+#wave {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0,212,255,1) 0%, #ef77a3 100%);
+  }
+  #wave:before {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 100% 0 0 50%;
+    width: 51%;
+    height: 40%;
+    background-color: white;
+    right: 0;
+    bottom: -100px;
+  }
+  #wave:after {
+    z-index: -1;
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 76.6%;
+    height: 40%;
+    background: #ef77a3;
+    left: -25%;
+    bottom: -100px;
+  }
+
+  .color-text {
+    background-image:linear-gradient(90deg, rgba(0,212,255,1) 20%, #ef77a3 60%);
+    filter: drop-shadow(2px 2px 0 gray);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

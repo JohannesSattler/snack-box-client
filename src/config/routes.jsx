@@ -12,6 +12,7 @@ import SubscriptionDetailPage from "../pages/SubscriptionDetailPage";
 import OrdersPage from "../pages/OrdersPage";
 import ProfilePage from '../pages/ProfilePage';
 import CheckoutPage from '../pages/CheckoutPage';
+import VerifyEmail from '../pages/VerifyEmail'
 
 import * as PATHS from "../utils/paths";
 import * as CONFIG from '../config/config'
@@ -84,9 +85,12 @@ const routes = (props) => {
     },
     {
       path: PATHS.CHECKOUT,
-      element: <CheckoutPage {...props} />,
+      element: user?.isVerified ? (<CheckoutPage {...props} />) : (<VerifyEmail tryVerify={false}/>),
     },
-
+    {
+      path: PATHS.VERIFYEMAIL,
+      element: <VerifyEmail tryVerify={true}/>,
+    },
   ];
 };
 

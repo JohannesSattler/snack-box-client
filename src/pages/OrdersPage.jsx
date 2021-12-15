@@ -20,6 +20,7 @@ import Loading from '../components/Loading/index'
 import SubscriptionCard from '../components/SubscriptionCard';
 import SubscriptionCardSmall from '../components/SubscriptionCardSmall';
 import Order from '../components/Order';
+import Newsletter from '../components/Newsletter';
 
 const steps = [
     {
@@ -67,6 +68,25 @@ function OrdersPage() {
                    return  <Order key={order._id} order={order} status={order.status} subscription={order.subscription}/>
                 })
             }
+            {/**✅❌ */}
+            <Typography align="left" variant="h5"> Plan for Night session</Typography>
+            <br/>
+            <Typography align="left" variant="body1">✅ Email verification</Typography>
+            <Typography align="left" variant="body1">✅ Paypal Fix</Typography>
+            <Typography align="left" variant="body1">❌ Newsletter Signup</Typography>
+            <Typography align="left" variant="body1">❌ Newsletter Manager</Typography>
+            <Typography align="left" variant="body1">❌ Base Admin Panel - Create Product / Subscription</Typography>
+            <Typography align="left" variant="body1">❌ Base Admin Panel - Check Orders</Typography>
+            <Typography align="left" variant="body1">❌ Email reset password</Typography>
+            <Typography align="left" variant="body1">❌ Landing Page</Typography>
+            <Typography align="left" variant="body1">❌ Some Design</Typography>
+            <br/>
+            <br/>
+            <br/>
+            <Newsletter/>
+            <br/>
+            <br/>
+            <br/>
         </Container>
     )
 }

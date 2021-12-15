@@ -23,14 +23,28 @@ export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
     email: "",
     password: "",
+    passwordReEnter: "",
     firstName: "",
     lastName: ""
   });
-  const { email, password, firstName, lastName } = form;
+  const { email, password, passwordReEnter, firstName, lastName } = form;
   const [error, setError] = useState(null);
+
+  const [errorFirstName, setErrorFirstName] = useState("")
+  const [errorLastName, setErrorLastName] = useState("")
+  const [errorEmail, setErrorEmail] = useState("")
+  const [errorPassword, setErrorPassword] = useState("")
+  const [errorPasswordReEnter, setErrorPasswordReEnter] = useState("")
+
   const navigate = useNavigate();
 
   function handleInputChange(event) {
+    setErrorFirstName("")
+    setErrorLastName("")
+    setErrorEmail("")
+    setErrorPassword("")
+    setErrorPasswordReEnter("")
+    setError("")
     const { name, value } = event.target;
     return setForm({ ...form, [name]: value });
   }
@@ -40,6 +54,7 @@ export default function Signup({ authenticate }) {
     const credentials = {
       email,
       password,
+      passwordReEnter,
       firstName,
       lastName,
     };
@@ -48,8 +63,27 @@ export default function Signup({ authenticate }) {
       if (!res.status) {
         // unsuccessful signup
         console.error("Signup was unsuccessful: ", res.errorMessage);
+
+        const {errorMessage: {message, type} } = res
+
+        if(type === 'firstName') {
+          return setErrorFirstName(message)
+        }
+        else if(type === 'lastName') {
+          return setErrorLastName(message)
+        }
+        else if(type === 'email') {
+          return setErrorEmail(message)
+        }
+        else if(type === 'password') {
+          return setErrorPassword(message)
+        }
+        else if(type === 'passwordReEnter') {
+          return setErrorPasswordReEnter(message)
+        }
+
         return setError({
-          message: res.errorMessage,
+          message: res.errorMessage.message,
         });
       }
 
@@ -87,6 +121,8 @@ export default function Signup({ authenticate }) {
           <Box component="form" onSubmit={handleFormSubmission} noValidate sx={{ mt: 1 }}>
             <Box style={{display: 'flex'}}>
               <TextField
+                error={errorFirstName}
+                helperText={errorFirstName}
                 margin="dense"
                 required
                 fullWidth
@@ -103,6 +139,8 @@ export default function Signup({ authenticate }) {
                 }}
               />
               <TextField
+                error={errorLastName}
+                helperText={errorLastName}
                 margin="dense"
                 required
                 fullWidth
@@ -115,6 +153,8 @@ export default function Signup({ authenticate }) {
               />
             </Box>
             <TextField
+              error={errorEmail}
+              helperText={errorEmail}
               margin="dense"
               required
               fullWidth
@@ -125,6 +165,8 @@ export default function Signup({ authenticate }) {
               onChange={handleInputChange}
             />
             <TextField
+              error={errorPassword}
+              helperText={errorPassword}
               margin="dense"
               required
               fullWidth
@@ -132,6 +174,20 @@ export default function Signup({ authenticate }) {
               label="Password"
               type="password"
               id="password"
+              onChange={handleInputChange}
+              autoComplete="current-password"
+            />
+
+            <TextField
+              error={errorPasswordReEnter}
+              helperText={errorPasswordReEnter}
+              margin="dense"
+              required
+              fullWidth
+              name="passwordReEnter"
+              label="Retype password"
+              type="password"
+              id="passwordReEnter"
               onChange={handleInputChange}
               autoComplete="current-password"
             />
