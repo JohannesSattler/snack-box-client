@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { signup } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import "./auth.css";
+import './landingpage.css'
 import * as PATHS from "../utils/paths";
 import * as USER_HELPERS from "../utils/userToken";
 import * as CONFIG from '../config/config'
@@ -16,8 +17,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Alert from '@mui/material/Alert';
-
-import { CircleTwoTone, Badge } from "@mui/icons-material";
+import { 
+  Badge, 
+  BadgeOutlined, 
+  Mail, 
+  Https, } from '@mui/icons-material';
+import { CardMedia, Divider, Paper } from "@mui/material";
 
 export default function Signup({ authenticate }) {
   const [form, setForm] = useState({
@@ -101,24 +106,19 @@ export default function Signup({ authenticate }) {
   }
 
   return (
-      <>
-      <Container component="main" maxWidth="xs">
+      <Container component={Paper} maxWidth="sm" sx={{paddingTop: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'gray' }}>
-            
-          </Avatar>
-          <Typography component="h2" variant="h5">
-            Sign Up
-          </Typography>
-          <Box component="form" onSubmit={handleFormSubmission} noValidate sx={{ mt: 1 }}>
+          <CardMedia
+              component="img"
+              style={{objectFit: 'contain', opacity: '1', marginTop: '10px'}}
+              height="120"
+              image={'/logo-big.png'}
+              alt="snackbox logo"
+          />
+          <br/>
+          <Typography variant="h4" color="GrayText"><b>Sign up</b></Typography>
+          <Divider/>
+          <Box component="form" onSubmit={handleFormSubmission} noValidate sx={{ mt: 1}}>
             <Box style={{display: 'flex'}}>
               <TextField
                 error={errorFirstName}
@@ -130,10 +130,10 @@ export default function Signup({ authenticate }) {
                 label="First Name"
                 name="firstName"
                 autoComplete="firstName"
-                variant="standard"
                 onChange={handleInputChange}
                 autoFocus
                 style={{marginRight: 2}}
+                variant="standard"
                 InputProps={{
                   startAdornment: <Badge fontSize="small" color="action" sx={{mr: 1}}/>
                 }}
@@ -150,6 +150,10 @@ export default function Signup({ authenticate }) {
                 autoComplete="lastName"
                 onChange={handleInputChange}
                 style={{marginLeft: 2}}
+                variant="standard"
+                InputProps={{
+                  startAdornment: <BadgeOutlined fontSize="small" color="action" sx={{mr: 1}}/>
+                }}
               />
             </Box>
             <TextField
@@ -163,6 +167,10 @@ export default function Signup({ authenticate }) {
               name="email"
               autoComplete="email"
               onChange={handleInputChange}
+              variant="standard"
+                InputProps={{
+                  startAdornment: <Mail fontSize="small" color="action" sx={{mr: 1}}/>
+              }}
             />
             <TextField
               error={errorPassword}
@@ -176,6 +184,10 @@ export default function Signup({ authenticate }) {
               id="password"
               onChange={handleInputChange}
               autoComplete="current-password"
+              variant="standard"
+                InputProps={{
+                  startAdornment: <Https fontSize="small" color="action" sx={{mr: 1}}/>
+              }}
             />
 
             <TextField
@@ -190,6 +202,10 @@ export default function Signup({ authenticate }) {
               id="passwordReEnter"
               onChange={handleInputChange}
               autoComplete="current-password"
+              variant="standard"
+                InputProps={{
+                  startAdornment: <Https fontSize="small" color="action" sx={{mr: 1}}/>
+              }}
             />
             {error && (
               <Alert severity="error">{error.message}</Alert>
@@ -210,14 +226,13 @@ export default function Signup({ authenticate }) {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/auth/login" variant="body2">
                   {"Already have an account? Log In"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
-        </Box>
+          <br/>
       </Container>
-      </>
   );
 }

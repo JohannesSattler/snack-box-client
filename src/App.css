@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.border-gradiant {
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(180deg, transparent 0%, #FE6B8B 30%, #FF8E53 90%, transparent 100%) 2 100%;
+}
+
+.border-gradiant-edit {
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(180deg, transparent 0%, #6bfe9c 30%, #cbff53 90%, transparent 100%) 2 100%;
+}

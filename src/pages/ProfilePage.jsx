@@ -35,7 +35,7 @@ function ProfilePage() {
     }
 
     return (
-        <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
+        <Container maxWidth="lg" component={Paper} sx={{padding: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
             <Typography variant='h4'>Hey {user.firstName}, how are you?</Typography>
             <Typography variant='subtitle1'>Here you can edit your profile</Typography>
             <br/>
@@ -51,7 +51,7 @@ function ProfilePage() {
                 <SnackInfo/>
                 <Divider/>
             </Box>
-            <Button onClick={handleUserDelete} sx={{m: 3}} variant="contained" color="error">
+            <Button onClick={handleUserDelete} sx={{m: 3}} variant="outlined" color="warning">
                 Delete Profile
             </Button>
         </Container>

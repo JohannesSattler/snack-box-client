@@ -22,6 +22,7 @@ import AdressInfo from '../components/AdressInfo';
 import CheckOut from '../components/CheckOut';
 import Paypal from '../components/Paypal';
 import Stripe from '../components/Stripe';
+import PaymentWrapper from '../components/PaymentWrapper';
 
 
 function CheckoutPage() {
@@ -76,18 +77,13 @@ function CheckoutPage() {
     }
 
     return (
-        <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
+        <Container maxWidth="lg" sx={{padding: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
             <Typography align="center" variant="h3">Checkout</Typography>
             <Box sx={{ maxWidth: 900, margin: '0 auto'}}>
                 <AdressInfo adress={user.adressInfo}/>
-                <br/>
+                <PaymentWrapper onPaymentAprroved={handlePaymentAprroved}/>
                 <CheckOut/>
                 <Divider/>
-                <br/>
-                <Stripe onApprove={handlePaymentAprroved}/>
-                <Divider/>
-                <br/>
-                <Paypal onApprove={handlePaymentAprroved}/>
                 <br/>
             </Box>
         </Container>

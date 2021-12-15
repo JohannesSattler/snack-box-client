@@ -97,7 +97,7 @@ function InfoPersonal(props) {
                 }
                 <Grid item xs={12}>
                     <FormControl variant="standard" style={{margin: '10px'}} >
-                        <InputLabel style={{color: 'Highlight'}}>
+                        <InputLabel>
                             City *
                         </InputLabel>
                         <Input
@@ -116,7 +116,7 @@ function InfoPersonal(props) {
                         />
                     </FormControl>
                     <FormControl variant="standard" style={{margin: '10px'}} >
-                        <InputLabel style={{color: 'Highlight'}}>
+                        <InputLabel>
                             Postal code *
                         </InputLabel>
                         <Input
@@ -137,7 +137,7 @@ function InfoPersonal(props) {
 
                 <Grid item xs={12}>
                     <FormControl variant="standard" style={{margin: '10px'}} >
-                        <InputLabel style={{color: 'Highlight'}}>
+                        <InputLabel>
                             Street *
                         </InputLabel>
                         <Input
@@ -155,7 +155,7 @@ function InfoPersonal(props) {
                     </FormControl>
 
                     <FormControl variant="standard" style={{margin: '10px'}} >
-                        <InputLabel style={{color: 'Highlight'}}>
+                        <InputLabel>
                             House Number *
                         </InputLabel>
                         <Input

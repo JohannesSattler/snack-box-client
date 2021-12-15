@@ -72,7 +72,7 @@ const Navbar = (props) => {
 
   return (
     <>
-    <AppBar position="fixed" style={{backgroundColor: '#e8e8e8', filter: 'drop-shadow(0 1px 10px #696969)'}}>
+    <AppBar position="fixed" style={{backgroundColor: '#fff', filter: 'drop-shadow(0 1px 10px #696969)'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Link to={!isInSignUpProcess ? PATHS.HOMEPAGE : PATHS.SIGNUPSTAGES} style={linkStyle}>
@@ -128,23 +128,23 @@ const Navbar = (props) => {
               !isInSignUpProcess ?
               ( 
                 <Box>
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <NavLinkIcon text={'Subscriptions'} path={PATHS.SUBSCRIPTIONS} Icon={AddBox} />
-                  </MenuItem>
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <NavLinkIcon text={'Products'} path={PATHS.PRODUCTS} Icon={Category} />
-                  </MenuItem>
 
                   {user ? (
                     <>
                       <MenuItem onClick={handleCloseNavMenu}>
-                        <NavLinkIcon text={'Your Orders'} path={PATHS.ORDERS} Icon={LocalShipping} />
+                        <NavLinkIcon variant="text" text={'Subscriptions'} path={PATHS.SUBSCRIPTIONS} Icon={AddBox} />
                       </MenuItem>
                       <MenuItem onClick={handleCloseNavMenu}>
-                        <NavLinkIcon text={'Profile'} path={PATHS.PROFILE} Icon={AccountBox} />
+                        <NavLinkIcon variant="text" text={'Products'} path={PATHS.PRODUCTS} Icon={Category} />
                       </MenuItem>
                       <MenuItem onClick={handleCloseNavMenu}>
-                        <NavLinkIcon text={'Checkout'} path={PATHS.CHECKOUT} color={'info'} Icon={ShoppingCart} />
+                        <NavLinkIcon variant="text" text={'Your Orders'} path={PATHS.ORDERS} Icon={LocalShipping} />
+                      </MenuItem>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <NavLinkIcon variant="text" text={'Profile'} path={PATHS.PROFILE} Icon={AccountBox} />
+                      </MenuItem>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <NavLinkIcon variant="text" text={'Checkout'} path={PATHS.CHECKOUT} color={'info'} Icon={ShoppingCart} />
                       </MenuItem>
                       <MenuItem onClick={handleCloseNavMenu}>
                         <Button
@@ -160,10 +160,10 @@ const Navbar = (props) => {
                     ) : (
                       <Box>
                         <MenuItem>
-                          <NavLinkIcon text={'Sign Up'} path={PATHS.SIGNUPPAGE} color={'primary'} Icon={AppRegistration} />
+                          <NavLinkIcon variant="outlined" text={'Sign Up'} path={PATHS.SIGNUPPAGE} color={'primary'} Icon={AppRegistration} />
                         </MenuItem>
                         <MenuItem>
-                          <NavLinkIcon text={'Login'} path={PATHS.LOGINPAGE} color={'success'} Icon={Login}/>
+                          <NavLinkIcon variant="outlined" text={'Login'} path={PATHS.LOGINPAGE} color={'secondary'} Icon={Login}/>
                         </MenuItem>
                       </Box>
                     )
@@ -200,7 +200,7 @@ const Navbar = (props) => {
                 </Button>
 
               ) : (
-                <NavLinkIcon text={'Login'} path={PATHS.LOGINPAGE} color={'success'} Icon={Login}/>
+                <NavLinkIcon variant="outlined" text={'Login'} path={PATHS.LOGINPAGE} color={'secondary'} Icon={Login}/>
               )}
             </Box>
 
@@ -218,15 +218,15 @@ const Navbar = (props) => {
           
            */}
             { // if no user is found and not in form
-              !isInSignUpProcess ?
+              !isInSignUpProcess && user ?
               ( 
                 <>
                   <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                    <NavLinkIcon text={'Subscriptions'} path={PATHS.SUBSCRIPTIONS}Icon={AddBox} />
-                    <NavLinkIcon text={'Products'} path={PATHS.PRODUCTS} Icon={Category} />
+                    <NavLinkIcon variant="text" text={'Subscriptions'} path={PATHS.SUBSCRIPTIONS} Icon={AddBox} />
+                    <NavLinkIcon variant="text" text={'Products'} path={PATHS.PRODUCTS} Icon={Category} />
                   </Box>
                 </>
-              ) : (<></>)}
+              ) : (<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}></Box>)}
 
 
             { // if user is found and hasnt filled signup stage
@@ -246,9 +246,9 @@ const Navbar = (props) => {
                 {
                   !isInSignUpProcess ? (
                     <>
-                      <NavLinkIcon text={'Your Orders'} path={PATHS.ORDERS} Icon={LocalShipping} />
-                      <NavLinkIcon text={'Profile'} path={PATHS.PROFILE} Icon={AccountBox} />
-                      <NavLinkIcon text={'Checkout'} path={PATHS.CHECKOUT} color={'info'} Icon={ShoppingCart}/>
+                      <NavLinkIcon variant="text" text={'Your Orders'} path={PATHS.ORDERS} Icon={LocalShipping} />
+                      <NavLinkIcon variant="text" text={'Profile'} path={PATHS.PROFILE} Icon={AccountBox} />
+                      <NavLinkIcon variant="text" text={'Checkout'} path={PATHS.CHECKOUT} color={'info'} Icon={ShoppingCart}/>
                     </>
                   ) : (<></>)
                 }
@@ -264,8 +264,8 @@ const Navbar = (props) => {
                 </>
               ) : (
                 <>
-                  <NavLinkIcon text={'Sign Up'} path={PATHS.SIGNUPPAGE} color={'primary'} Icon={AppRegistration} />
-                  <NavLinkIcon text={'Login'} path={PATHS.LOGINPAGE} color={'success'} Icon={Login}/>
+                  <NavLinkIcon variant="outlined" text={'Sign Up'} path={PATHS.SIGNUPPAGE} color={'primary'} Icon={AppRegistration} />
+                  <NavLinkIcon variant="outlined" text={'Login'} path={PATHS.LOGINPAGE} color={'secondary'} Icon={Login}/>
                 </>
               )
             }

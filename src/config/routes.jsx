@@ -13,6 +13,9 @@ import OrdersPage from "../pages/OrdersPage";
 import ProfilePage from '../pages/ProfilePage';
 import CheckoutPage from '../pages/CheckoutPage';
 import VerifyEmail from '../pages/VerifyEmail'
+import NewsLetterDelete from '../pages/NewsLetterDelete'
+
+import '../pages/landingpage.css'
 
 import * as PATHS from "../utils/paths";
 import * as CONFIG from '../config/config'
@@ -90,6 +93,10 @@ const routes = (props) => {
     {
       path: PATHS.VERIFYEMAIL,
       element: <VerifyEmail tryVerify={true}/>,
+    },
+    {
+      path: PATHS.DELETENEWSLETTER,
+      element: <NewsLetterDelete/>,
     },
   ];
 };

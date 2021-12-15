@@ -33,7 +33,7 @@ function SnackInfo() {
     return (
         <Box>
             <Typography color="primary" align="left" variant="h6">Snacks</Typography>
-            <Card style={{maxWidth: '100%', border: '2px dashed #4893e8', borderRadius: '5px', padding: '10px 10px', margin: '0px auto'}}>
+            <Card className="border-gradiant" style={{maxWidth: '100%', borderRadius: '5px', padding: '10px 10px', margin: '0px auto'}}>
                 <Grid container sx={{p: 1, px: 2}}>
                     <Grid item xs={3}>
                         <Typography align="left" id="input-slider" gutterBottom>
@@ -87,13 +87,13 @@ function SnackInfo() {
                 </Grid>
             </Card>
             <Typography align="right" sx={{mx: 2, my: 0}}>
-                <Button onClick={() => setToggleEdit(!toggleEdit)} align="left" sx={{mx: 3}} size='medium' variant='text' color={toggleEdit ? 'warning' : 'primary'}>
-                    {toggleEdit ? 'Hide' : 'Edit'}
+                <Button onClick={() => setToggleEdit(!toggleEdit)} align="left" sx={{m: 3}} size='medium' variant='contained' color={toggleEdit ? 'warning' : 'primary'}>
+                    {toggleEdit ? 'Hide Edit' : 'Edit Snacks'}
                 </Button>
             </Typography>
             {
                 toggleEdit && (
-                    <Card style={{maxWidth: '100%', border: '1px dashed gray', borderRadius: '5px', padding: '10px 0', margin: '0 auto', marginBottom: '20px'}}>
+                    <Card className="border-gradiant-edit" style={{maxWidth: '100%', borderRadius: '5px', padding: '10px 0', margin: '0 auto', marginBottom: '20px'}}>
                         <InfoSnacks onFormSubmit={(e, data) => handleEditSubmit(data)}/>
                     </Card>
                 )

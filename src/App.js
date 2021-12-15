@@ -6,6 +6,7 @@ import { getLoggedIn, logout } from "./services/auth";
 import routes from "./config/routes";
 import * as USER_HELPERS from "./utils/userToken";
 import * as CONFIG from './config/config'
+import './pages/landingpage.css'
 
 import { UserContext } from "./context/UserContext";
 import { CheckoutContext } from "./context/CheckoutContext";
@@ -69,7 +70,7 @@ export default function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" id="wave">
         <Navbar handleLogout={handleLogout} user={user} />
         <div style={{marginTop: '65px'}}>
         <Routes>

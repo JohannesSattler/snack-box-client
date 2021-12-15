@@ -38,7 +38,7 @@ function CheckOut() {
     if(!checkoutItems) return null
 
     return (
-        <Box component={Paper} sx={{minWidth: '100%', backgroundColor: '#fafafa', borderRadius: '10px', padding: '1%', margin: '10px auto', border: '0px solid gray', opacity: '0.9'}}>
+        <Box className="border-gradiant" component={Paper} sx={{minWidth: '100%', backgroundColor: '#fff', borderRadius: '10px', padding: '1%', margin: '10px auto', opacity: '0.9'}}>
                 <Box sx={{maxWidth: '600px', margin: '10px auto'}}>
                     <Typography variant='h5'>Order Summary</Typography>
                     <br/>

@@ -34,8 +34,13 @@ function AdressInfo(props) {
 
     return (
         <Box>
-            <Typography color="primary" align="left" variant="h6">Delivery Adress</Typography>
-            <Card style={{maxWidth: '100%', border: '2px dashed #4caf50', borderRadius: '5px', padding: '10px 0', margin: '0px auto'}}>
+            <Typography color="primary" align="left" variant="h6">Delivery Address</Typography>
+            <Card className="border-gradiant" style={{
+                maxWidth: '100%', 
+                borderRadius: '5px', 
+                padding: '10px 0', 
+                margin: '0px auto',
+                }}>
                 <Grid container spacing={0.5}>
                     <Grid item xs={12}>
                         <Box display="flex" >
@@ -59,13 +64,13 @@ function AdressInfo(props) {
                 </Grid>
             </Card>
             <Typography align="right" sx={{mx: 2, my: 0}}>
-                <Button onClick={() => setToggleEdit(!toggleEdit)} align="left" sx={{mx: 3}} size='medium' variant='text' color={toggleEdit ? 'warning' : 'primary'}>
-                    {toggleEdit ? 'Hide' : 'Edit'}
+                <Button onClick={() => setToggleEdit(!toggleEdit)} align="left" sx={{m: 1}} size='medium' variant='contained' color={toggleEdit ? 'warning' : 'primary'}>
+                    {toggleEdit ? 'Hide Edit' : 'Edit Delivery Address'}
                 </Button>
             </Typography>
             {
                 toggleEdit && (
-                    <Card style={{maxWidth: '100%', border: '1px dashed gray', borderRadius: '5px', padding: '10px 0', margin: '0 auto', marginBottom: '20px'}}>
+                    <Card className="border-gradiant-edit" style={{maxWidth: '100%', borderRadius: '5px', padding: '10px 0', margin: '0 auto', marginBottom: '20px'}}>
                         <InfoPersonal showNameEdit={true} onFormSubmit={(e, data) => handleEditSubmit(data)}/>
                     </Card>
                 )

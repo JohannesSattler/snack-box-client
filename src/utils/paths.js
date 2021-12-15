@@ -17,4 +17,5 @@ export const PROFILE = '/profile'
 export const CHECKOUT = '/checkout'
 
 export const VERIFYEMAIL = '/user/:id/verify'
+export const DELETENEWSLETTER = '/newsletter/:email/delete'
 

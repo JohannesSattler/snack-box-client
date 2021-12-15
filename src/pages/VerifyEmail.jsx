@@ -21,7 +21,10 @@ function VerifyEmail(props) {
     }, [])
 
     return (
-        <Container component={Paper} maxWidth="sm" sx={{p: 5}}>
+        <>
+        <br/>
+        <Container component={Paper} maxWidth="sm" sx={{padding: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
+            <br/>
             <Typography variant='h4'>Please verify your Email 😇</Typography>
             <Divider/>
             <br/>
@@ -34,7 +37,9 @@ function VerifyEmail(props) {
             <Typography align="left" variant='body1'>If you cant find this mail, check your <b>Spam Folder</b></Typography>
             <br/>
             <Typography align="left" variant='body1'><i>Best Regards, your SnackBox Team</i>🥰</Typography>
+            <br/>
         </Container>
+        </>
     )
 }
 

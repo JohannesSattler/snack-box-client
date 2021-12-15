@@ -1,10 +1,13 @@
 import { Box, Button, CardMedia, Container, Divider, Grid, Paper, Typography } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import PictureItem from '../components/LandingPage/PictureItem'
 import Newsletter from '../components/Newsletter'
 import './landingpage.css'
 
 function LandingPage() {
+    const navigate = useNavigate()
+    
     return (
     <div>
         <header id="wave">
@@ -27,7 +30,7 @@ function LandingPage() {
                         Never take candy from a stranger, unless they send you a box full of awesome candy every week!
                     </Typography>
                     <br/>
-                    <Button size="large" variant="contained" sx={{color: 'hotpink', backgroundColor: 'white', borderRadius: '50px', float: 'left'}}>
+                    <Button onClick={() => navigate('/auth/signup')} size="large" variant="outlined" sx={{color: 'hotpink', backgroundColor: 'white', borderRadius: '50px', float: 'left'}}>
                         Sign me Up
                     </Button>
                 </Box>
@@ -85,7 +88,9 @@ function LandingPage() {
                 </Typography>
                 <br/>
                 <Typography align='center' variant="body1">
-                    Our team invented the new "Lorem Ipsum": Chilie Chips, chocolate & peanut butter.
+                    <i>
+                    “You can tell a lot about a fellow's character by his way of eating jellybeans.” 
+                    </i><b> ―Ronald Reagan</b>
                 </Typography>
             </Box>
             <br/>

@@ -79,44 +79,45 @@ function SignUpStages(props) {
     }
 
     return (
-        <Container style={{marginTop: '100px'}}>
-            <Stepper activeStep={activeStep}>
-                {steps.map((label, index) => {
-                    const stepProps = {};
-                    const labelProps = {};
+        <Container>
+            <br/>
+            <Box component={Paper} sx={{width: '100%', borderRadius: '10px', padding: '1%', margin: '10px auto', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
+                <Stepper activeStep={activeStep}>
+                    {steps.map((label, index) => {
+                        const stepProps = {};
+                        const labelProps = {};
 
-                    return (
-                        <Step key={label} {...stepProps}>
-                            <StepLabel {...labelProps}>{label}</StepLabel>
-                        </Step>
-                    );
-                })}
-            </Stepper>
-            <Box component={Paper} sx={{width: '100%', borderRadius: '10px', padding: '1%', margin: '10px auto'}}>
+                        return (
+                            <Step key={label} {...stepProps}>
+                                <StepLabel {...labelProps}>{label}</StepLabel>
+                            </Step>
+                        );
+                    })}
+                </Stepper>
                 {
                     user.signupStage === 0 ? (
-                        <Box sx={{maxWidth: '800px', margin: '10px auto'}}>
+                        <Box className="border-gradiant" sx={{maxWidth: '800px', margin: '10px auto'}}>
                             <InfoSnacks onFormSubmit={handleFormSubmit}/>
                         </Box>
                     ) : (<></>)
                 }
                 {
                     user.signupStage === 1 ? (
-                        <Box sx={{maxWidth: '1000px', margin: '10px auto'}}>
+                        <Box className="border-gradiant"  sx={{maxWidth: '1000px', margin: '10px auto'}}>
                             <InfoSubscription onFormSubmit={handleFormSubmit}/>
                         </Box>
                     ) : (<></>)
                 }
                 {
                     user.signupStage === 2 ? (
-                        <Box sx={{maxWidth: '800px', margin: '10px auto'}}>
+                        <Box className="border-gradiant"  sx={{maxWidth: '800px', margin: '10px auto'}}>
                             <InfoPersonal onFormSubmit={handleFormSubmit}/>
                         </Box>
                     ) : (<></>)
                 }
                 {
                     user.signupStage === 3 ? (
-                        <Box sx={{maxWidth: '800px', margin: '10px auto'}}>
+                        <Box className="border-gradiant"  sx={{maxWidth: '800px', margin: '10px auto'}}>
                             <InfoPayment onFormSubmit={handleFormSubmit}/>
                         </Box>
                     ) : (<></>)

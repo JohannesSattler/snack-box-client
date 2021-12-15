@@ -73,13 +73,12 @@ function OrdersPage() {
             <br/>
             <Typography align="left" variant="body1">✅ Email verification</Typography>
             <Typography align="left" variant="body1">✅ Paypal Fix</Typography>
-            <Typography align="left" variant="body1">❌ Newsletter Signup</Typography>
-            <Typography align="left" variant="body1">❌ Newsletter Manager</Typography>
+            <Typography align="left" variant="body1">✅ Newsletter Signup</Typography>
+            <Typography align="left" variant="body1">✅ Newsletter Manager</Typography>
             <Typography align="left" variant="body1">❌ Base Admin Panel - Create Product / Subscription</Typography>
             <Typography align="left" variant="body1">❌ Base Admin Panel - Check Orders</Typography>
-            <Typography align="left" variant="body1">❌ Email reset password</Typography>
-            <Typography align="left" variant="body1">❌ Landing Page</Typography>
-            <Typography align="left" variant="body1">❌ Some Design</Typography>
+            <Typography align="left" variant="body1">✅ Landing Page</Typography>
+            <Typography align="left" variant="body1">✅ Some Design</Typography>
             <br/>
             <br/>
             <br/>
