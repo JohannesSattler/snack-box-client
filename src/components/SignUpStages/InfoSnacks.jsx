@@ -65,9 +65,9 @@ function InfoSnacks(props) {
                     onChange={handleAlignmentChange}
                     size="small"
                     >
-                        <ToggleButton name='perDay' value="not-often">not often</ToggleButton>
-                        <ToggleButton name='perDay' value="often">often</ToggleButton>
-                        <ToggleButton name='perDay' value="all-the-time">All the time</ToggleButton>
+                        <ToggleButton name='perDay' value="not-often">not often 🤔</ToggleButton>
+                        <ToggleButton name='perDay' value="often">often 🙂</ToggleButton>
+                        <ToggleButton name='perDay' value="all-the-time">All the time 😁</ToggleButton>
                     </ToggleButtonGroup>
                 </Grid>
             </Grid>

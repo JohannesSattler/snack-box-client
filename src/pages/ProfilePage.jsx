@@ -20,6 +20,7 @@ import InfoPayment from '../components/SignUpStages/InfoPayment';
 import AdressInfo from '../components/AdressInfo';
 import SnackInfo from '../components/SnackInfo';
 import axios from 'axios';
+import './landingpage.css'
 
 function ProfilePage() {
     const navigate = useNavigate()
@@ -36,8 +37,11 @@ function ProfilePage() {
 
     return (
         <Container maxWidth="lg" component={Paper} sx={{padding: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
-            <Typography variant='h4'>Hey {user.firstName}, how are you?</Typography>
-            <Typography variant='subtitle1'>Here you can edit your profile</Typography>
+            <br/>
+            <br/>
+            <Typography className='color-text' variant='h3'><b>Hey {user.firstName}, whats snacking?</b></Typography>
+            <Typography variant='h5' color="GrayText">Here you can edit your profile 😇</Typography>
+            <Divider/>
             <br/>
             {/** PEROSNAL INFO*/}
             <Box>

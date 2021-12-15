@@ -19,6 +19,8 @@ import '../pages/landingpage.css'
 
 import * as PATHS from "../utils/paths";
 import * as CONFIG from '../config/config'
+import AdminLogin from "../pages/Admin/AdminLogin";
+import AdminDashboard from "../pages/Admin/AdminDashboard";
 
 const routes = (props) => {
   const { user } = props;
@@ -26,7 +28,7 @@ const routes = (props) => {
     {
       path: PATHS.HOMEPAGE,
       element: user ? 
-        (<HomePage {...props} />)
+        (<LandingPage {...props} />)
         : 
         (<LandingPage {...props} />),
     },
@@ -97,6 +99,14 @@ const routes = (props) => {
     {
       path: PATHS.DELETENEWSLETTER,
       element: <NewsLetterDelete/>,
+    },
+    {
+      path: PATHS.ADMINLOGIN,
+      element: <AdminLogin/>,
+    },
+    {
+      path: PATHS.ADMINDASHBOARD,
+      element: <AdminDashboard/>,
     },
   ];
 };

@@ -21,6 +21,7 @@ import SubscriptionCard from '../components/SubscriptionCard';
 import SubscriptionCardSmall from '../components/SubscriptionCardSmall';
 import Order from '../components/Order';
 import Newsletter from '../components/Newsletter';
+import './landingpage.css'
 
 const steps = [
     {
@@ -61,15 +62,40 @@ function OrdersPage() {
     }
 
     return (
-        <Container maxWidth="lg" style={{backgroundColor: 'white'}}>
-            <Typography align="center" variant="h3">Your Orders</Typography>
+        <Container maxWidth="lg" component={Paper} sx={{padding: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
+            <br/>
+            <br/>
+            <Typography className='color-text' align="center" variant="h3"><b>Your Orders</b></Typography>
+            <Typography variant='h5' color="GrayText">Here you can track your orders! 🙂</Typography>
+            <Divider/>
+            <br/>
             {
                 orders.map(order => {
-                   return  <Order key={order._id} order={order} status={order.status} subscription={order.subscription}/>
+                   return  <><Order key={order._id} order={order} status={order.status} subscription={order.subscription}/><br/></>
                 })
             }
+            {
+                !orders ? (
+                    <>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Typography align="center" variant="h4" color="GrayText"><b>Seems to be empty in here?</b> 🤔</Typography>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Newsletter/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    </>
+                ) : (<></>)
+            }
             {/**✅❌ */}
-            <Typography align="left" variant="h5"> Plan for Night session</Typography>
+{/*             <Typography align="left" variant="h5"> Plan for Night session</Typography>
             <br/>
             <Typography align="left" variant="body1">✅ Email verification</Typography>
             <Typography align="left" variant="body1">✅ Paypal Fix</Typography>
@@ -85,7 +111,7 @@ function OrdersPage() {
             <Newsletter/>
             <br/>
             <br/>
-            <br/>
+            <br/> */}
         </Container>
     )
 }

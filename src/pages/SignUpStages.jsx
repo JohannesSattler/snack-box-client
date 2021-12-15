@@ -103,7 +103,7 @@ function SignUpStages(props) {
                 }
                 {
                     user.signupStage === 1 ? (
-                        <Box className="border-gradiant"  sx={{maxWidth: '1000px', margin: '10px auto'}}>
+                        <Box className="border-gradiant"  sx={{maxWidth: '1300px', margin: '10px auto'}}>
                             <InfoSubscription onFormSubmit={handleFormSubmit}/>
                         </Box>
                     ) : (<></>)

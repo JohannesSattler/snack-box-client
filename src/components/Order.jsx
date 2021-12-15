@@ -47,7 +47,7 @@ function Order(props) {
     }, [])
 
     return (
-        <Box raised sx={{ maxWidth: 800, margin: '10px auto', display: 'flex', flexWrap: 'wrap', padding: '10px', borderRadius: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
+        <Box className="border-gradiant" raised sx={{ maxWidth: 800, margin: '10px auto', display: 'flex', flexWrap: 'wrap', padding: '10px', borderRadius: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
             <Box sx={{ maxWidth: 300, margin: '10px auto'}}>
                 {
                 subscription && (

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Loading from '../components/Loading/index'
 import ProductCard from '../components/ProductCard'
 import axios from 'axios'
-import { Pagination, Box } from '@mui/material'
+import { Pagination, Box, Container, Typography, Divider, Stack } from '@mui/material'
 
 
 function ProductPage() {
@@ -35,17 +35,18 @@ function ProductPage() {
     } 
 
     return (
-        <Box>
-            <div 
-            style={{
-                    display: 'flex', 
-                    flexWrap: 'wrap', 
-                    justifyContent: 'center', 
-                    alignItems: 'flex-start',
-                    width: '80%', 
-                    margin: '0 auto',
-                    height: '100%'
-                }}
+        <Container maxWidth="xl" sx={{padding: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
+        <br/>
+        <Typography className='color-text' align="center" variant="h3"><b>All of our Products</b></Typography>
+        <Typography variant='h5' color="GrayText">You can find some nice products that we dont even sell! 🤫</Typography>
+        <Divider/>
+            <Stack
+            sx={{p: 5, m: '0 auto'}}
+            direction="row"
+            flexWrap="wrap"
+            justifyContent="center"
+            alignItems="center"
+            divider={<Divider orientation="vertical" flexItem />}
             >
                 {
                     products.map(product => {
@@ -53,7 +54,7 @@ function ProductPage() {
                     })
                 }
 
-            </div>
+            </Stack>
             <Pagination 
             count={itemCount} 
             boundaryCount={2}
@@ -63,7 +64,7 @@ function ProductPage() {
             hidePrevButton 
             hideNextButton
             style={{backgroundColor: 'transparent', margin: '30px'}}/>
-        </Box>
+        </Container>
     )
 }
 

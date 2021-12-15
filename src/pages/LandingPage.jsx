@@ -10,8 +10,8 @@ function LandingPage() {
     
     return (
     <div>
-        <header id="wave">
-            <Box sx={{maxWidth: '600px', marginLeft: '11%', marginTop: '7%', position: 'absolute', p: 5, zIndex: 3}}>
+        <header>
+            <Box sx={{maxWidth: '600px', margin: '250px auto', p: 5, zIndex: 3}}>
                 <Box sx={{display: 'flex', alignItems: 'flex-end'}}>
                     <CardMedia
                         component="img"

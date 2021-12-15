@@ -23,7 +23,7 @@ import CheckOut from '../components/CheckOut';
 import Paypal from '../components/Paypal';
 import Stripe from '../components/Stripe';
 import PaymentWrapper from '../components/PaymentWrapper';
-
+import './landingpage.css'
 
 function CheckoutPage() {
     const navigate = useNavigate()
@@ -78,7 +78,11 @@ function CheckoutPage() {
 
     return (
         <Container maxWidth="lg" sx={{padding: '10px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 5px gray)'}}>
-            <Typography align="center" variant="h3">Checkout</Typography>
+            <br/>
+            <br/>
+            <Typography className='color-text' align="center" variant="h3"><b>Checkout</b></Typography>
+            <Typography variant='h5' color="GrayText">Check out this awesome checkout page! 🤭</Typography>
+            <Divider/>
             <Box sx={{ maxWidth: 900, margin: '0 auto'}}>
                 <AdressInfo adress={user.adressInfo}/>
                 <PaymentWrapper onPaymentAprroved={handlePaymentAprroved}/>
