@@ -72,6 +72,7 @@ export default function App() {
   return (
     <div className="App" id="wave">
         <Navbar handleLogout={handleLogout} user={user} />
+
         <div style={{marginTop: '65px'}}>
         <Routes>
           {routes({ user, authenticate, handleLogout }).map((route) => (
