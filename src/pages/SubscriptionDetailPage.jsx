@@ -40,7 +40,7 @@ function SubscriptionDetailPage() {
             <Grid container spacing={2}>
 
                 <Grid item xs={8} >
-                    <img style={{objectFit: 'fill', heigh: '100%', width: '100%', borderRadius: '20px'}} src={subscription.image} alt={subscription.title}></img>
+                    <img style={{objectFit: 'fill', height: '100%', width: '100%', borderRadius: '20px'}} height="300" src={subscription.image} alt={subscription.title}></img>
                     <Typography variant="h4" component="h3">
                         {subscription.title}
                     </Typography>

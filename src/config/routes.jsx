@@ -21,6 +21,7 @@ import * as PATHS from "../utils/paths";
 import * as CONFIG from '../config/config'
 import AdminLogin from "../pages/Admin/AdminLogin";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
+import BlogPage from "../pages/BlogPage";
 
 const routes = (props) => {
   const { user } = props;
@@ -107,6 +108,10 @@ const routes = (props) => {
     {
       path: PATHS.ADMINDASHBOARD,
       element: <AdminDashboard/>,
+    },
+    {
+      path: PATHS.BLOGPOSTS,
+      element: <BlogPage/>,
     },
   ];
 };

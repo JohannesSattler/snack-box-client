@@ -22,3 +22,5 @@ export const DELETENEWSLETTER = '/newsletter/:email/delete'
 export const ADMINLOGIN = '/admin/login'
 export const ADMINDASHBOARD = '/admin/dashboard'
 
+export const BLOGPOSTS = '/blog/:id'
+

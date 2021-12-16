@@ -1,9 +1,12 @@
 import { Box, Button, CardMedia, Container, Divider, Grid, Paper, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import BlogPostCard from '../components/BlogPostCard'
+import Footer from '../components/Footer'
 import PictureItem from '../components/LandingPage/PictureItem'
 import Newsletter from '../components/Newsletter'
 import './landingpage.css'
+import Loading from '../components/Loading/index'
 
 function LandingPage() {
     const navigate = useNavigate()
@@ -11,7 +14,7 @@ function LandingPage() {
     return (
     <div>
         <header>
-            <Box sx={{maxWidth: '600px', margin: '250px auto', p: 5, zIndex: 3}}>
+            <Box id='signup' sx={{maxWidth: '600px', margin: '250px auto', p: 5, zIndex: 3}}>
                 <Box sx={{display: 'flex', alignItems: 'flex-end'}}>
                     <CardMedia
                         component="img"
@@ -38,7 +41,7 @@ function LandingPage() {
         </header>
         <div className='header'></div>
         <Container maxWidth="lg" style={{marginTop: '100px', padding: '20px'}}>
-            <Typography className='color-text' align='center' variant="h3" style={{marginTop: '10px', padding: '0px'}}><b>Why SnackBox?</b></Typography>
+            <Typography id='why' className='color-text' align='center' variant="h3" style={{marginTop: '10px', padding: '0px'}}><b>Why SnackBox?</b></Typography>
             <br/>
             <Divider/>
             <br/>
@@ -68,7 +71,7 @@ function LandingPage() {
             </Box>
             <br/>
             <br/>
-            <Typography className='color-text' align='center' variant="h3" style={{marginTop: '10px', padding: '0px'}}><b>About Us</b></Typography>
+            <Typography id='aboutus' className='color-text' align='center' variant="h3" style={{marginTop: '10px', padding: '0px'}}><b>About Us</b></Typography>
             <br/>
             <Divider/>
             <br/>
@@ -98,12 +101,43 @@ function LandingPage() {
             <Typography className='color-text' align='center' variant="h3" style={{marginTop: '10px', padding: '0px'}}><b>Stay in touch</b></Typography>
             <br/>
             <Divider/>
-            <br/>
+            <br id='newsletter'/>
             <Newsletter/>
+
+            <br/>
+            <br/>
+            <Typography className='color-text' align='center' variant="h3" style={{marginTop: '10px', padding: '0px'}}><b>Blog Posts</b></Typography>
+            <br/>
+            <Divider/>
+            <Box style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+                <Box sx={{m: 2}}>
+                    <BlogPostCard 
+                    image="https://i.pinimg.com/originals/9f/a8/98/9fa8980f4de428e6160e97f5fe832599.jpg"
+                    title="Cookies Are Awesome and you know that!"
+                    id="1"
+                    />
+                </Box>
+                <Box sx={{m: 2}}>
+                    <BlogPostCard 
+                    image="https://empoweredmastery.com/wp-content/uploads/2016/09/eat-food.jpg"
+                    title="5 Reasons Why You Should Eat More Snacks"
+                    id="2"
+                    />
+                </Box>
+                <Box sx={{m: 2}}>
+                    <BlogPostCard 
+                    image="https://www.thelocal.de/wp-content/uploads/2019/08/b08c6fe9ba475c54cc455937c0eeb204e7f97c4d4935100e27f7d98a2f11979e-646x402.jpg"
+                    title="The Perfect Summer Treat: Delicious Ice Cream"
+                    id="3"
+                    />
+                </Box>
+            </Box>
+
         </Container>
         <br/>
+        <Loading/>
         <br/>
-        <br/>
+        <Footer/>
         </div>
     )
 }

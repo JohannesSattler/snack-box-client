@@ -81,8 +81,8 @@ function AdminSubscription() {
               />
             <TextField
                 margin="dense"
-                label="describtion"
-                name="describtion"
+                label="description"
+                name="description"
                 onChange={handleInputChange}
                 style={{marginRight: 2}}
                 variant="standard"

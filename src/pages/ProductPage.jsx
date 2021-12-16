@@ -22,8 +22,8 @@ function ProductPage() {
     
     async function handlePaginateChange(e) {
         setProducts([])
-        const page = e.target.innerText
-        setIndex(Number(page))
+        const page = Number(e.target.innerText) - 1
+        setIndex(page)
         const base = process.env.REACT_APP_API_BASE_URL
         const response = await axios.post(base + '/products', {page})
         console.log(response)
