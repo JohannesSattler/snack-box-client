@@ -17,7 +17,7 @@ function AdminDashboard(props) {
     }, [])
 
     return (
-        <Container maxWidth="xl" sx={{paddingTop: '10px'}}>
+        <Container maxWidth="lg" sx={{paddingTop: '10px'}}>
             <br/>
             <br/>
             <Typography color="white" variant='h3'><b>Hey Admin!</b></Typography>
