@@ -15,14 +15,14 @@
 .spinner > div {
   width: 100px;
   height:  100px;
-  background-color: #333;
+  background-color: rgba(255, 255, 255, 0);
 
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 2s infinite ease-in-out both;
   animation: sk-bouncedelay 2s infinite ease-in-out both;
 
-  background-image: url("https://www.kindpng.com/picc/m/74-741895_thai-si-day-transparent-background-cookie-clipart-hd.png");
+  background-image: url("https://i.imgur.com/WTNlhwj.png");
   background-repeat: no-repeat;
   background-size:cover;
 }
