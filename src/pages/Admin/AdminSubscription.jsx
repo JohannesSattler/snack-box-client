@@ -9,7 +9,7 @@ function AdminSubscription() {
     const [error, setError] = useState("")
     const [form, setForm] = useState({
         image: '',
-        describtion: '',
+        description: '',
         title: '',
         price: 0,
     });
@@ -25,7 +25,7 @@ function AdminSubscription() {
 
     const {         
         image,
-        describtion,
+        description,
         title,
         price,
     } = form;
@@ -36,7 +36,7 @@ function AdminSubscription() {
         const data = {
             image,
             title,
-            describtion,
+            description,
             total: Number(productsSub.reduce((acc, current) => acc + current.price,0).toFixed(2)),
             products: productsSub.map(prod => prod._id)
         };

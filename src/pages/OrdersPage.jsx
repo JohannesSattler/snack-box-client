@@ -75,7 +75,7 @@ function OrdersPage() {
                 })
             }
             {
-                !orders ? (
+                !orders.length ? (
                     <>
                     <br/>
                     <br/>

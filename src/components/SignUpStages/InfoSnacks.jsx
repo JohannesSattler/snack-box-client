@@ -3,6 +3,7 @@ import { Button, Alert, Container, Slider, Typography, ToggleButtonGroup, Toggle
 import axios from 'axios';
 import { UserContext } from "../../context/UserContext";
 import { Box } from '@mui/system';
+import { Bookmark, BookmarkBorder, CheckCircle, RadioButtonUnchecked } from '@mui/icons-material';
 
 function InfoSnacks(props) {
     const {user, setUser} = useContext(UserContext)
@@ -104,22 +105,66 @@ function InfoSnacks(props) {
                 <Grid item xs={5}>
                     <Box style={{ float: 'right'}}>
                         <FormControlLabel
+                            sx={{borderRadius: '10px', padding: '5px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 2px gray)'}}
                             control={
-                                <Checkbox onChange={handleCheckBoxChange} name="sweet" />
+                                <Checkbox 
+                                onChange={handleCheckBoxChange} 
+                                name="sweet" 
+                                icon={<RadioButtonUnchecked />}
+                                checkedIcon={<CheckCircle />}
+                                color="success"
+                                />
                             }
-                            label="sweet"
+                            label={
+                                <>
+                                    <img alt="sweet" src="https://www.pngitem.com/pimgs/m/132-1328245_sweet-png-image-with-transparent-background-big-candy.png" width="auto" height="50px"  style={{borderRadius:'10px'}}/>
+                                    <Typography align="center" gutterBottom>
+                                        <b>Sweet </b> 🍬
+                                    </Typography>
+                                </>
+                            }
                         />
+
                         <FormControlLabel
+                            sx={{borderRadius: '10px', padding: '5px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 2px gray)'}}
                             control={
-                                <Checkbox onChange={handleCheckBoxChange} name="salty" />
+                                <Checkbox 
+                                onChange={handleCheckBoxChange} 
+                                name="salty" 
+                                icon={<RadioButtonUnchecked />}
+                                checkedIcon={<CheckCircle />}
+                                color="success"
+                                />
                             }
-                            label="salty"
+                            label={
+                                <>
+                                    <img alt="salty" src="https://www.pngall.com/wp-content/uploads/2/Salt-PNG-Pic.png" width="auto" height="50px" style={{borderRadius:'10px'}}/>
+                                    <Typography align="center" gutterBottom>
+                                        <b>Salty </b> 🍟
+                                    </Typography>
+                                </>
+                            }
                         />
+
                         <FormControlLabel
+                            sx={{borderRadius: '10px', padding: '5px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 2px gray)'}}
                             control={
-                                <Checkbox onChange={handleCheckBoxChange} name="organic" />
+                                <Checkbox 
+                                onChange={handleCheckBoxChange} 
+                                name="organic" 
+                                icon={<RadioButtonUnchecked />}
+                                checkedIcon={<CheckCircle />}
+                                color="success"
+                                />
                             }
-                            label="organic"
+                            label={
+                                <>
+                                    <img alt="organic" src="https://png.pngitem.com/pimgs/s/160-1608909_what-we-do-organic-leaf-png-transparent-png.png" width="auto" height="50px" style={{borderRadius:'10px'}}/>
+                                    <Typography align="center" gutterBottom>
+                                        <b>Organic </b> 🌱
+                                    </Typography>
+                                </>
+                            }
                         />
                     </Box>
                 </Grid>
@@ -136,15 +181,27 @@ function InfoSnacks(props) {
                     <Box style={{ float: 'right'}}>
                         <FormControlLabel
                             control={
-                                <Checkbox onChange={handleCheckBoxChange} name="vegan" />
+                                <Checkbox 
+                                onChange={handleCheckBoxChange} 
+                                name="vegan" 
+                                icon={<RadioButtonUnchecked />}
+                                checkedIcon={<CheckCircle />}
+                                color="success"
+                                />
                             }
-                            label="vegan"
+                            label="🌿 vegan"
                         />
                         <FormControlLabel
                             control={
-                                <Checkbox onChange={handleCheckBoxChange} name="vegetarian" />
+                                <Checkbox 
+                                onChange={handleCheckBoxChange} 
+                                name="vegetarian" 
+                                icon={<RadioButtonUnchecked />}
+                                checkedIcon={<CheckCircle />}
+                                color="success"
+                                />
                             }
-                            label="vegetarian"
+                            label="🐮 vegetarian"
                         />
                     </Box>
                 </Grid>
