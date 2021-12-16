@@ -5,9 +5,9 @@ function Footer() {
     return (
 
         <>
-        <AppBar position="static" style={{background: 'linear-gradient(90deg, rgba(0,212,255,1) 20%, #ef77a3 60%)', borderTop: '10px solid #e8e8e8'}}>
+        <AppBar position="static" style={{background: 'linear-gradient(90deg, rgba(0,212,255,1) 20%, #ef77a3 60%)', borderTop: '4px solid #e8e8e8'}}>
           <Container maxWidth="md">
-            <Toolbar sx={{p: 1, width: '100%'}}>
+            <Toolbar sx={{p: 1, width: '100%', my: 3}}>
                 <CardMedia
                     component="img"
                     style={{objectFit: 'contain', opacity: '1'}}
