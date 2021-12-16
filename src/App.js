@@ -17,6 +17,9 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const base_url = process.env.REACT_APP_API_BASE_URL
+    console.log(base_url)
+    
     const accessToken = USER_HELPERS.getUserToken();
     if (!accessToken) {
       return setIsLoading(false);

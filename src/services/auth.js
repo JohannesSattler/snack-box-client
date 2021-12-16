@@ -24,7 +24,7 @@ function successStatus(res) {
 
 // creates a basic url for every request in this file
 const authService = axios.create({
-  baseURL: `http://localhost:5000/api/auth`,
+  baseURL: process.env.REACT_APP_API_BASE_URL + `/auth`,
 });
 
 export function login(credentials) {
