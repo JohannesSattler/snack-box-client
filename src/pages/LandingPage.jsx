@@ -135,7 +135,6 @@ function LandingPage() {
 
         </Container>
         <br/>
-        <Loading/>
         <br/>
         <Footer/>
         </div>
