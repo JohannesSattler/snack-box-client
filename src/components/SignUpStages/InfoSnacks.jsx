@@ -75,12 +75,12 @@ function InfoSnacks(props) {
             <Divider/>
 
             <Grid container sx={{p: 2}}>
-                <Grid item xs={8}>
+                <Grid item xs={4}>
                     <Typography align="left" id="input-slider" gutterBottom>
                         How many snack partners do you have?
                     </Typography>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={8}>
                     <Slider
                     style={{width: '100%', float: 'right'}}
                     onChange={handleInputChange}
@@ -97,12 +97,12 @@ function InfoSnacks(props) {
             <Divider/>
 
             <Grid container sx={{p: 2}}>
-                <Grid item xs={7}>
+                <Grid item xs={4}>
                     <Typography align="left" id="input-slider" gutterBottom>
                         How do you want your snacks?
                     </Typography>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={8}>
                     <Box style={{ float: 'right'}}>
                         <FormControlLabel
                             sx={{borderRadius: '10px', padding: '5px', backgroundColor: '#f7f7f7', filter: 'drop-shadow(0 0 2px gray)'}}
@@ -172,12 +172,12 @@ function InfoSnacks(props) {
             <Divider/>
 
             <Grid container sx={{p: 2}}>
-                <Grid item xs={8}>
+                <Grid item xs={4}>
                     <Typography align="left" id="input-slider" gutterBottom>
                         Are you vegetarian or vegan?
                     </Typography>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={8}>
                     <Box style={{ float: 'right'}}>
                         <FormControlLabel
                             control={
