@@ -57,7 +57,6 @@ function ProductPage() {
             </Stack>
             <Pagination 
             count={itemCount} 
-            boundaryCount={2}
             onChange={handlePaginateChange} 
             page={index} 
             color="primary" 
